@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
          }
  
          if(Input.GetKey(KeyCode.A)) {
-             transform.Rotate (Vector3.forward * -1);
+             transform.Rotate (Vector3.forward * 1);
          }
  
          if(Input.GetKey(KeyCode.S)) {
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
          }
  
          if(Input.GetKey(KeyCode.D)) {
-             transform.Rotate (Vector3.forward * 1);
+             transform.Rotate (Vector3.forward * -1);
          }
          if(Input.GetKey(KeyCode.Space) && targetTime <= 0) {
              targetTime = bulletCD;
