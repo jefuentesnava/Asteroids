@@ -19,15 +19,12 @@ public class Player : MonoBehaviour
          if(Input.GetKey(KeyCode.W)) {
              GetComponent<Rigidbody2D>().AddForce(transform.up * speed);
          }
- 
          if(Input.GetKey(KeyCode.A)) {
              transform.Rotate (Vector3.forward * 1);
          }
- 
          if(Input.GetKey(KeyCode.S)) {
              GetComponent<Rigidbody2D>().AddForce(-transform.up * speed);
          }
- 
          if(Input.GetKey(KeyCode.D)) {
              transform.Rotate (Vector3.forward * -1);
          }
