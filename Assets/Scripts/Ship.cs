@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    private int lives = 3;
-    private int thrusterSpeed = 5;
-    private int rotationSpeed = 1;
+    private float lives = 3f;
+    private float thrusterSpeed = 5f;
+    private float rotationSpeed = 1f;
 
     // Start is called before the first frame update
     void Start()
