@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    private float lives = 3f;
+    private int extraLives = 3;
     private float thrusterSpeed = 5f;
     private float rotationSpeed = 1f;
 
@@ -32,5 +32,9 @@ public class Ship : MonoBehaviour
             transform.Rotate(-Vector3.forward * rotationSpeed);
         }
 
+    }
+    public int getExtraLives()
+    {
+        return extraLives;
     }
 }
