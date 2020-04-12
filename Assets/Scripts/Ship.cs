@@ -5,14 +5,13 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     private int extraLives = 3;
-    private float thrusterSpeed = 5f;
+    private float thrusterSpeed = 1f;
     private float rotationSpeed = 1f;
-    Vector3 originalPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        originalPosition = gameObject.transform.position;
+
     }
 
     // Update is called once per frame
@@ -20,7 +19,7 @@ public class Ship : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            GetComponent<Rigidbody2D>().AddForce(transform.up);
+            GetComponent<Rigidbody2D>().AddForce(transform.up * thrusterSpeed);
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -33,8 +32,6 @@ public class Ship : MonoBehaviour
             transform.Rotate(-Vector3.forward * rotationSpeed);
         }
 
-        
-
     }
 
     public int getExtraLives()
@@ -45,27 +42,35 @@ public class Ship : MonoBehaviour
     //called when Ship collides with an asteroid
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Asteroid")
+        if (collider.tag == "Asteroid" && extraLives > 0)
         {
             Debug.Log("Asteroid collision detected");
+            StartCoroutine(respawn());
         }
-
-        if (extraLives > 0)
-        {
-            Debug.Log("Respawning...");
-            respawn();
-        }
-        
     }
 
     private IEnumerator respawn()
     {
+        Debug.Log("Respawning...");
         extraLives--;
 
-        gameObject.SetActive(false);
-        yield return new WaitForSeconds(1);
+        //hide sprite
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
-        gameObject.transform.position = originalPosition;
-        gameObject.SetActive(true);
+        //reset ship to original position
+        gameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+        //reset rigidbody physics
+        Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector3(0f, 0f, 0f);
+
+        //disable collider
+        gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+
+        yield return new WaitForSeconds(1.0f);
+
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+        Debug.Log("Respawned");
     }
 }
