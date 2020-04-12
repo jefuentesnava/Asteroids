@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 205328476}
   - component: {fileID: 205328475}
   - component: {fileID: 205328477}
+  - component: {fileID: 205328478}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -254,6 +255,44 @@ MonoBehaviour:
   firingPoint: {fileID: 320105190}
   missilePrefab: {fileID: 6229772663671384171, guid: 66ce090251df271408a37c9d1e656ef8,
     type: 3}
+--- !u!60 &205328478
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205328472}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.76, y: 0.77}
+    newSize: {x: 2.7, y: 3.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.04, y: 0.36499998}
+      - {x: 0.02, y: 0.385}
+      - {x: -0.01, y: 0.385}
+      - {x: -0.04, y: 0.375}
+      - {x: -0.38, y: -0.305}
+      - {x: -0.38, y: -0.36499998}
+      - {x: -0.37, y: -0.385}
+      - {x: 0.38, y: -0.385}
+      - {x: 0.38, y: -0.325}
+    - - {x: 0, y: 0.305}
+      - {x: 0.26999998, y: -0.235}
+      - {x: -0.26999998, y: -0.24499999}
+      - {x: -0.26, y: -0.24499999}
 --- !u!1 &320105189
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,6 +824,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 95.76501
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040622956515955301, guid: 82e056fa485647d439d2bb72c5b79be7,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82e056fa485647d439d2bb72c5b79be7, type: 3}

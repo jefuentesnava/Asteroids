@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
@@ -39,13 +40,21 @@ public class Ship : MonoBehaviour
         return extraLives;
     }
 
-    //called when Ship collides with an asteroid
+    //ship-asteroid collision behavior
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Asteroid" && extraLives > 0)
+        if (collider.tag == "Asteroid")
         {
             Debug.Log("Asteroid collision detected");
-            StartCoroutine(respawn());
+
+            if (extraLives > 0)
+            {
+                StartCoroutine(respawn());
+            }
+            else
+            {
+                SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+            }
         }
     }
 
