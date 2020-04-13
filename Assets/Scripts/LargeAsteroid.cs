@@ -5,6 +5,7 @@ using UnityEngine;
 public class LargeAsteroid : MonoBehaviour
 {
     private float initialVelocty = 50f;
+    private bool isCollided = false;
     
     // Start is called before the first frame update
     void Start()
@@ -17,5 +18,22 @@ public class LargeAsteroid : MonoBehaviour
     void Update()
     {
         //TODO
+    }
+
+    //asteroid-missle collision behavior
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "Missile")
+        {
+            //prevent future calls after initial collision
+            if (isCollided)
+            {
+                return;
+            }
+
+            isCollided = true;
+            Debug.Log("Asteroid-Missile collision detected");
+            Destroy(gameObject);
+        }
     }
 }

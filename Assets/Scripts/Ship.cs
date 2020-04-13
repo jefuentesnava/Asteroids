@@ -45,7 +45,7 @@ public class Ship : MonoBehaviour
     {
         if (collider.tag == "Asteroid")
         {
-            Debug.Log("Asteroid collision detected");
+            Debug.Log("Ship-Asteroid collision detected");
 
             if (extraLives > 0)
             {
