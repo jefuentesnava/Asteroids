@@ -6,7 +6,9 @@ public class LargeAsteroid : MonoBehaviour
 {
     private float initialVelocty = 50f;
     private bool isCollided = false;
-    
+    bool isWrappingHorizontally = false;
+    bool isWrappingVertically = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class LargeAsteroid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TODO
+        screenWrap();
     }
 
     //asteroid-missle collision behavior
@@ -32,8 +34,59 @@ public class LargeAsteroid : MonoBehaviour
             }
 
             isCollided = true;
-            Debug.Log("Asteroid-Missile collision detected");
             Destroy(gameObject);
         }
+    }
+
+    //screen-wrapping functions
+    private bool isVisible()
+    {
+        Renderer renderer = GetComponentInChildren<Renderer>();
+
+        if (renderer.isVisible)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void screenWrap()
+    {
+        Camera camera = Camera.main;
+        Vector3 viewportPosition = camera.WorldToViewportPoint(transform.position);
+        Vector3 newPosition = transform.position;
+
+        //if asteroid is visible, no wrapping is necessary
+        if (isVisible())
+        {
+            isWrappingHorizontally = false;
+            isWrappingVertically = false;
+            return;
+        }
+
+        //if asteroid is currently wrapping, do nothing
+        if (isWrappingHorizontally && isWrappingVertically)
+        {
+            return;
+        }
+
+        //detect whether asteroid has disappeared horizontally...
+        if (!isWrappingHorizontally && (viewportPosition.x > 1 || viewportPosition.x < 0))
+        {
+            newPosition.x = -newPosition.x;
+            isWrappingHorizontally = true;
+        }
+
+        //...or vertically
+        if (!isWrappingVertically && (viewportPosition.y > 1 || viewportPosition.y < 0))
+        {
+            newPosition.y = -newPosition.y;
+            isWrappingVertically = true;
+        }
+
+        transform.position = newPosition;
     }
 }

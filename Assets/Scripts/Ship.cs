@@ -8,6 +8,8 @@ public class Ship : MonoBehaviour
     private int extraLives = 3;
     private float thrusterSpeed = 1f;
     private float rotationSpeed = 1f;
+    bool isWrappingHorizontally = false;
+    bool isWrappingVertically = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,12 @@ public class Ship : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        getUserInput();
+        screenWrap();
+    }
+
+    public void getUserInput()
     {
         if (Input.GetKey(KeyCode.W))
         {
@@ -32,7 +40,6 @@ public class Ship : MonoBehaviour
         {
             transform.Rotate(-Vector3.forward * rotationSpeed);
         }
-
     }
 
     public int getExtraLives()
@@ -40,13 +47,11 @@ public class Ship : MonoBehaviour
         return extraLives;
     }
 
-    //ship-asteroid collision behavior
+    //ship-asteroid collision behavior; called when ship collides with asteroid
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Asteroid")
         {
-            Debug.Log("Ship-Asteroid collision detected");
-
             if (extraLives > 0)
             {
                 StartCoroutine(respawn());
@@ -58,9 +63,9 @@ public class Ship : MonoBehaviour
         }
     }
 
+    //coroutine for OnTriggerEnter2D()
     private IEnumerator respawn()
     {
-        Debug.Log("Respawning...");
         extraLives--;
 
         //hide sprite
@@ -80,6 +85,57 @@ public class Ship : MonoBehaviour
 
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.GetComponent<PolygonCollider2D>().enabled = true;
-        Debug.Log("Respawned");
+    }
+
+    //screen-wrapping functions
+    private bool isVisible()
+    {
+        Renderer renderer = GetComponentInChildren<Renderer>();
+
+        if (renderer.isVisible)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void screenWrap()
+    {
+        Camera camera = Camera.main;
+        Vector3 viewportPosition = camera.WorldToViewportPoint(transform.position);
+        Vector3 newPosition = transform.position;
+
+        //if ship is visible, no wrapping is necessary
+        if (isVisible())
+        {
+            isWrappingHorizontally = false;
+            isWrappingVertically = false;
+            return;
+        }
+
+        //if ship is currently wrapping, do nothing
+        if (isWrappingHorizontally && isWrappingVertically)
+        {
+            return;
+        }
+
+        //detect whether ship has disappeared horizontally...
+        if (!isWrappingHorizontally && (viewportPosition.x > 1 || viewportPosition.x < 0))
+        {
+            newPosition.x = -newPosition.x;
+            isWrappingHorizontally = true;
+        }
+
+        //...or vertically
+        if (!isWrappingVertically && (viewportPosition.y > 1 || viewportPosition.y < 0))
+        {
+            newPosition.y = -newPosition.y;
+            isWrappingVertically = true;
+        }
+
+        transform.position = newPosition;
     }
 }
