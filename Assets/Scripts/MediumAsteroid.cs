@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MediumAsteroid : MonoBehaviour
 {
-    private float initialVelocty = 75f;
+    private float initialVelocty;
     private bool isCollided = false;
     bool isWrappingHorizontally = false;
     bool isWrappingVertically = false;
@@ -12,6 +12,7 @@ public class MediumAsteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        initialVelocty = Random.Range(75f, 100f);
         this.transform.eulerAngles = new Vector3(0f, 0f, Random.Range(0, 360));
         GetComponent<Rigidbody2D>().AddForce(transform.up * initialVelocty);
     }
