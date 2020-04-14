@@ -12,4 +12,13 @@ public class Missile : MonoBehaviour
     {
         rigidBody.velocity = transform.up * missileSpeed;
     }
+
+    //missile-asteroid collision behavior; called when missile collides with asteroid
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "Asteroid")
+        {
+            Destroy(gameObject);
+        }
+    }
 }
