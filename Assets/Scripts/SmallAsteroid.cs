@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MediumAsteroid : MonoBehaviour
+public class SmallAsteroid : MonoBehaviour
 {
-    public GameObject smallAsteroidPrefab;
-
     private float initialVelocty;
     private bool isCollided = false;
     bool isWrappingHorizontally = false;
@@ -14,7 +12,7 @@ public class MediumAsteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initialVelocty = Random.Range(75f, 100f);
+        initialVelocty = Random.Range(125f, 150f);
         this.transform.eulerAngles = new Vector3(0f, 0f, Random.Range(0, 360));
         GetComponent<Rigidbody2D>().AddForce(transform.up * initialVelocty);
     }
@@ -37,17 +35,6 @@ public class MediumAsteroid : MonoBehaviour
             }
 
             isCollided = true;
-            //instantiate two small asteroids
-            Instantiate(
-                smallAsteroidPrefab, 
-                this.transform.position, 
-                Random.rotation, 
-                this.transform.parent);
-            Instantiate(
-                smallAsteroidPrefab, 
-                this.transform.position, 
-                Random.rotation, 
-                this.transform.parent);
             Destroy(gameObject);
         }
     }
