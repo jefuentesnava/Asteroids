@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
-    private float TimeOut = 0.25f;
+    private float TimeOut = 0.75f;
     
     public float missileSpeed = 20f;
     public Rigidbody2D rigidBody;
