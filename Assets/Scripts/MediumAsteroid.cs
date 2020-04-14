@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LargeAsteroid : MonoBehaviour
+public class MediumAsteroid : MonoBehaviour
 {
-    public GameObject mediumAsteroidPrefab;
-
-    private float initialVelocty = 50f;
+    private float initialVelocty = 75f;
     private bool isCollided = false;
     bool isWrappingHorizontally = false;
     bool isWrappingVertically = false;
@@ -36,18 +34,6 @@ public class LargeAsteroid : MonoBehaviour
             }
 
             isCollided = true;
-            
-            //instantiate two medium asteroids
-            Instantiate(
-                mediumAsteroidPrefab, 
-                this.transform.position, 
-                Random.rotation, 
-                this.transform.parent);
-            Instantiate(
-                mediumAsteroidPrefab, 
-                this.transform.position, 
-                Random.rotation, 
-                this.transform.parent);
             Destroy(gameObject);
         }
     }
