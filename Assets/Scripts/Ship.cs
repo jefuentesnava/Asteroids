@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class Ship : MonoBehaviour
 {
     private int extraLives = 3;
-    private float thrusterSpeed = 1f;
-    private float rotationSpeed = 1f;
+    private float thrusterSpeed = 12f;
+    private float rotationSpeed = 8f;
     bool isWrappingHorizontally = false;
     bool isWrappingVertically = false;
 
@@ -17,8 +17,7 @@ public class Ship : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         getUserInput();
         screenWrap();
