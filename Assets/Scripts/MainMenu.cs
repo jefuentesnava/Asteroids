@@ -7,6 +7,6 @@ public class MainMenu : MonoBehaviour
 {
     public void StartSinglePlayerMode()
     {
-        SceneManager.LoadScene("MainLevel", LoadSceneMode.Single);
+        SceneManager.LoadScene("Level01", LoadSceneMode.Single);
     }
 }
