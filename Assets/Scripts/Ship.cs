@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
-    private int extraLives = 3;
+    private static int extraLives = 3;
     private float thrusterSpeed = 12f;
     private float rotationSpeed = 8f;
     bool isWrappingHorizontally = false;
