@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Level01 : MonoBehaviour
+public class Level03 : MonoBehaviour
 {
     int asteroidCount;
 
@@ -28,7 +28,7 @@ public class Level01 : MonoBehaviour
 
         if (asteroidCount == 0)
         {
-            SceneManager.LoadScene("Level02", LoadSceneMode.Single);
+            SceneManager.LoadScene("Level04", LoadSceneMode.Single);
         }
     }
 }
