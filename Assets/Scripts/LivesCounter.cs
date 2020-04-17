@@ -6,17 +6,19 @@ public class LivesCounter : MonoBehaviour
 {
     private const int DefaultNumberOfExtraLives = 3;
     private int currentNumberOfExtraLives = DefaultNumberOfExtraLives;
-    private GameObject UI;
-    private GameObject ship;
-    private Component shipComponent;
+    private Ship ship;
     private GameObject[] lifeIcons;
 
     // Start is called before the first frame update
     void Start()
     {
-        //get access to Ship.cs functions to get current number of extra lives
-        UI = transform.parent.gameObject;
-        ship = UI.transform.parent.Find("Ship").gameObject;
+        //get access to Ship functions to get current number of extra lives
+        GameObject UI = transform.parent.gameObject;
+        GameObject shipObject = UI.transform.parent.Find("Ship").gameObject;
+        if (shipObject != null)
+        {
+            ship = shipObject.GetComponent<Ship>();
+        }
 
         //get access to life icons
         lifeIcons = new GameObject[DefaultNumberOfExtraLives];
@@ -29,7 +31,7 @@ public class LivesCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentNumberOfExtraLives = ship.GetComponent<Ship>().getExtraLives();
+        currentNumberOfExtraLives = ship.getExtraLives();
 
         if (currentNumberOfExtraLives == 2)
         {
