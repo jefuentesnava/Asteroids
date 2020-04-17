@@ -18,6 +18,6 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(missilePrefab, firingPoint.position, firingPoint.rotation, firingPoint);
+        Instantiate(missilePrefab, firingPoint.position, firingPoint.rotation);
     }
 }
