@@ -6,16 +6,17 @@ public class LargeAsteroid : MonoBehaviour
 {
     public GameObject mediumAsteroidPrefab;
 
-    private float initialVelocty = 50f;
+    private const float InitialVelocity = 50f;
+    
     private bool isCollided = false;
-    bool isWrappingHorizontally = false;
-    bool isWrappingVertically = false;
+    private bool isWrappingHorizontally = false;
+    private bool isWrappingVertically = false;
 
     // Start is called before the first frame update
     void Start()
     {
         this.transform.eulerAngles = new Vector3(0f, 0f, Random.Range(0, 360));
-        GetComponent<Rigidbody2D>().AddForce(transform.up * initialVelocty);
+        GetComponent<Rigidbody2D>().AddForce(transform.up * InitialVelocity);
     }
 
     // Update is called once per frame
@@ -36,17 +37,17 @@ public class LargeAsteroid : MonoBehaviour
             }
 
             isCollided = true;
-            
+
             //instantiate two medium asteroids
             Instantiate(
-                mediumAsteroidPrefab, 
-                this.transform.position, 
-                Random.rotation, 
+                mediumAsteroidPrefab,
+                this.transform.position,
+                Random.rotation,
                 this.transform.parent);
             Instantiate(
-                mediumAsteroidPrefab, 
-                this.transform.position, 
-                Random.rotation, 
+                mediumAsteroidPrefab,
+                this.transform.position,
+                Random.rotation,
                 this.transform.parent);
             Destroy(gameObject);
         }

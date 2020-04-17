@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Level04 : MonoBehaviour
 {
-    int asteroidCount;
+    private int asteroidCount;
 
     // Start is called before the first frame update
     void Start()

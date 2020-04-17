@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SmallAsteroid : MonoBehaviour
 {
-    private float initialVelocty;
     private bool isCollided = false;
-    bool isWrappingHorizontally = false;
-    bool isWrappingVertically = false;
+    private bool isWrappingHorizontally = false;
+    private bool isWrappingVertically = false;
+    private float initialVelocty;
 
     // Start is called before the first frame update
     void Start()

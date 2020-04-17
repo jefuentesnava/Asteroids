@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
-    private float TimeOut = 0.75f;
-    
-    public float missileSpeed = 20f;
-    public Rigidbody2D rigidBody;
-    bool isWrappingHorizontally = false;
-    bool isWrappingVertically = false;
+    private const float TimeOut = 0.75f;
+    private const float MissileSpeed = 20f;
+    private const int LargeAsteroidPointValue = 20;
+    private const int MediumAsteroidPointValue = 50;
+    private const int SmallAsteroidPointValue = 100;
+
+    private bool isWrappingHorizontally = false;
+    private bool isWrappingVertically = false;
     private float timer = 0.0f;
-    
+
+    public Rigidbody2D rigidBody;
+    private Ship ship;
+
     // Start is called before the first frame update
     void Start()
     {
-        rigidBody.velocity = transform.up * missileSpeed;
+        rigidBody.velocity = transform.up * MissileSpeed;
+
+        //get access to Ship functions to get current score
+        GameObject shipObject = transform.parent.Find("Ship").gameObject;
+        if (shipObject != null)
+        {
+            ship = shipObject.GetComponent<Ship>();
+        }
     }
 
     // Update is called once per frame
@@ -33,13 +45,24 @@ public class Missile : MonoBehaviour
     //missile-asteroid collision behavior; called when missile collides with asteroid
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Asteroid")
+        if (collider.gameObject.CompareTag("LargeAsteroid"))
         {
+            ship.addScore(LargeAsteroidPointValue);
+            Destroy(gameObject);
+        }
+        if (collider.gameObject.CompareTag("MediumAsteroid"))
+        {
+            ship.addScore(MediumAsteroidPointValue);
+            Destroy(gameObject);
+        }
+        if (collider.gameObject.CompareTag("SmallAsteroid"))
+        {
+            ship.addScore(SmallAsteroidPointValue);
             Destroy(gameObject);
         }
     }
 
-        //screen-wrapping functions
+    //screen-wrapping functions
     private bool isVisible()
     {
         Renderer renderer = GetComponentInChildren<Renderer>();

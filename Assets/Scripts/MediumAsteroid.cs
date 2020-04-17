@@ -6,10 +6,10 @@ public class MediumAsteroid : MonoBehaviour
 {
     public GameObject smallAsteroidPrefab;
 
-    private float initialVelocty;
     private bool isCollided = false;
-    bool isWrappingHorizontally = false;
-    bool isWrappingVertically = false;
+    private bool isWrappingHorizontally = false;
+    private bool isWrappingVertically = false;
+    private float initialVelocty;
 
     // Start is called before the first frame update
     void Start()
@@ -39,14 +39,14 @@ public class MediumAsteroid : MonoBehaviour
             isCollided = true;
             //instantiate two small asteroids
             Instantiate(
-                smallAsteroidPrefab, 
-                this.transform.position, 
-                Random.rotation, 
+                smallAsteroidPrefab,
+                this.transform.position,
+                Random.rotation,
                 this.transform.parent);
             Instantiate(
-                smallAsteroidPrefab, 
-                this.transform.position, 
-                Random.rotation, 
+                smallAsteroidPrefab,
+                this.transform.position,
+                Random.rotation,
                 this.transform.parent);
             Destroy(gameObject);
         }

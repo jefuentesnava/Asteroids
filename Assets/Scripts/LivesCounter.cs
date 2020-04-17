@@ -6,6 +6,7 @@ public class LivesCounter : MonoBehaviour
 {
     private const int DefaultNumberOfExtraLives = 3;
     private int currentNumberOfExtraLives = DefaultNumberOfExtraLives;
+    
     private Ship ship;
     private GameObject[] lifeIcons;
 

@@ -5,17 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
+    private const float thrusterSpeed = 12f;
+    private const float rotationSpeed = 8f;
+
     private static int extraLives = 3;
-    private float thrusterSpeed = 12f;
-    private float rotationSpeed = 8f;
-    bool isWrappingHorizontally = false;
-    bool isWrappingVertically = false;
+    private static int score = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    private bool isWrappingHorizontally = false;
+    private bool isWrappingVertically = false;
 
     void FixedUpdate()
     {
@@ -46,10 +43,22 @@ public class Ship : MonoBehaviour
         return extraLives;
     }
 
+    public void addScore(int points)
+    {
+        score += points;
+    }
+
+    public int getScore()
+    {
+        return score;
+    }
+
     //ship-asteroid collision behavior; called when ship collides with asteroid
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Asteroid")
+        if (collider.gameObject.CompareTag("LargeAsteroid") ||
+            collider.gameObject.CompareTag("MediumAsteroid") ||
+            collider.gameObject.CompareTag("SmallAsteroid"))
         {
             if (extraLives > 0)
             {

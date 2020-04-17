@@ -6,7 +6,13 @@ public class Turret : MonoBehaviour
 {
     public Transform firingPoint;
     public GameObject missilePrefab;
+    public GameObject root;
 
+    void Start()
+    {
+        root = transform.parent.gameObject;
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -18,6 +24,6 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(missilePrefab, firingPoint.position, firingPoint.rotation);
+        Instantiate(missilePrefab, firingPoint.position, firingPoint.rotation, root.transform);
     }
 }
