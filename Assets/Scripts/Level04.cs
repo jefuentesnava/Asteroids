@@ -20,7 +20,15 @@ public class Level04 : MonoBehaviour
 
         foreach (Transform child in transform)
         {
-            if (child.tag == "Asteroid")
+            if (child.CompareTag("LargeAsteroid"))
+            {
+                asteroidCount++;
+            }
+            else if (child.CompareTag("MediumAsteroid"))
+            {
+                asteroidCount++;
+            }
+            else if (child.CompareTag("SmallAsteroid"))
             {
                 asteroidCount++;
             }
