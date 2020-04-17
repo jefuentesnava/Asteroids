@@ -65,16 +65,17 @@ public class Missile : MonoBehaviour
     //screen-wrapping functions
     private bool isVisible()
     {
-        Renderer renderer = GetComponentInChildren<Renderer>();
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
-        if (renderer.isVisible)
+        foreach (Renderer r in renderers)
         {
-            return true;
+            if (r.isVisible)
+            {
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     private void screenWrap()
