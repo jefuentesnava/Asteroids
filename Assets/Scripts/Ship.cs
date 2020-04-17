@@ -11,12 +11,16 @@ public class Ship : MonoBehaviour
     private static int extraLives = 3;
     private static int score = 0;
 
+    private bool inputEnabled = true;
     private bool isWrappingHorizontally = false;
     private bool isWrappingVertically = false;
 
     void FixedUpdate()
     {
-        getUserInput();
+        if (inputEnabled)
+        {
+            getUserInput();
+        }
         screenWrap();
     }
 
@@ -53,6 +57,11 @@ public class Ship : MonoBehaviour
         return score;
     }
 
+    public bool getInputEnabled()
+    {
+        return inputEnabled;
+    }
+
     //ship-asteroid collision behavior; called when ship collides with asteroid
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -76,6 +85,9 @@ public class Ship : MonoBehaviour
     {
         extraLives--;
 
+        //disable input
+        inputEnabled = false;
+
         //hide sprite
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
@@ -91,6 +103,7 @@ public class Ship : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
+        inputEnabled = true;
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.GetComponent<PolygonCollider2D>().enabled = true;
     }

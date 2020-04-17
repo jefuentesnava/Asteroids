@@ -8,17 +8,32 @@ public class Turret : MonoBehaviour
     public GameObject missilePrefab;
     public GameObject root;
 
+    private bool inputEnabled;
+    private Ship ship;
+
     void Start()
     {
         root = transform.parent.gameObject;
+
+        //get access to Ship functions to check if input is enabled or not
+        GameObject shipObject = transform.gameObject;
+        if (shipObject != null)
+        {
+            ship = shipObject.GetComponent<Ship>();
+        }
     }
-    
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        inputEnabled = ship.getInputEnabled();
+        
+        if (inputEnabled)
         {
-            Shoot();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Shoot();
+            }
         }
     }
 
