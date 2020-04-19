@@ -1,32 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Missile : MonoBehaviour
 {
-    private const float TimeOut = 0.75f;
-    private const float MissileSpeed = 20f;
-    private const int LargeAsteroidPointValue = 20;
-    private const int MediumAsteroidPointValue = 50;
-    private const int SmallAsteroidPointValue = 100;
+    public const float TimeOut = 0.75f;
+    public const float MissileSpeed = 20f;
+    public const int LargeAsteroidPointValue = 20;
+    public const int MediumAsteroidPointValue = 50;
+    public const int SmallAsteroidPointValue = 100;
 
-    private bool isWrappingHorizontally = false;
-    private bool isWrappingVertically = false;
+    public bool isWrappingHorizontally { get; private set; } = false;
+    public bool isWrappingVertically { get; private set; } = false;
     private float timer = 0.0f;
 
     public Rigidbody2D rigidBody;
-    private Ship ship;
+    private PlayerState playerState;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody.velocity = transform.up * MissileSpeed;
 
-        //get access to Ship functions to get current score
-        GameObject shipObject = transform.parent.Find("Ship").gameObject;
-        if (shipObject != null)
+        //get access to player state
+        GameObject playerStateObject = null;
+        GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+
+        foreach (GameObject g in rootGameObjects)
         {
-            ship = shipObject.GetComponent<Ship>();
+            if (g.transform.CompareTag("PlayerState"))
+            {
+                playerStateObject = g;
+            }
+        }
+
+        if (playerStateObject != null)
+        {
+            playerState = playerStateObject.GetComponent<PlayerState>();
         }
     }
 
@@ -47,20 +56,20 @@ public class Missile : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("LargeAsteroid"))
         {
-            ship.addScore(LargeAsteroidPointValue);
-            ship.addExtraLifeScore(LargeAsteroidPointValue);
+            playerState.Score += LargeAsteroidPointValue;
+            playerState.ExtraLifeScore += LargeAsteroidPointValue;
             Destroy(gameObject);
         }
         if (collider.gameObject.CompareTag("MediumAsteroid"))
         {
-            ship.addScore(MediumAsteroidPointValue);
-            ship.addExtraLifeScore(MediumAsteroidPointValue);
+            playerState.Score += MediumAsteroidPointValue;
+            playerState.ExtraLifeScore += MediumAsteroidPointValue;
             Destroy(gameObject);
         }
         if (collider.gameObject.CompareTag("SmallAsteroid"))
         {
-            ship.addScore(SmallAsteroidPointValue);
-            ship.addExtraLifeScore(SmallAsteroidPointValue);
+            playerState.Score += SmallAsteroidPointValue;
+            playerState.ExtraLifeScore += SmallAsteroidPointValue;
             Destroy(gameObject);
         }
     }

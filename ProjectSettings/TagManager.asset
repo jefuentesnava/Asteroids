@@ -8,6 +8,9 @@ TagManager:
   - LargeAsteroid
   - MediumAsteroid
   - SmallAsteroid
+  - Ship
+  - PlayerState
+  - UI
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LargeAsteroid : MonoBehaviour
 {
@@ -118,10 +116,5 @@ public class LargeAsteroid : MonoBehaviour
         }
 
         transform.position = newPosition;
-    }
-
-    private void wrappingTimeout()
-    {
-
     }
 }

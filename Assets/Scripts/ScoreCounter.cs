@@ -1,25 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ScoreCounter : MonoBehaviour
 {
-    private Ship ship;
+    private PlayerState playerState;
     private TMP_Text textComponent;
 
     // Start is called before the first frame update
     void Start()
     {
-        //get access to Ship functions to get current score
-        GameObject UI = transform.parent.gameObject;
-        GameObject shipObject = UI.transform.parent.Find("Ship").gameObject;
-        if (shipObject != null)
+        textComponent = GetComponent<TMP_Text>();
+
+        //get access to player state
+        GameObject playerStateObject = null;
+        GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+
+        foreach (GameObject g in rootGameObjects)
         {
-            ship = shipObject.GetComponent<Ship>();
+            if (g.transform.CompareTag("PlayerState"))
+            {
+                playerStateObject = g;
+            }
         }
 
-        textComponent = GetComponent<TMP_Text>();
+        if (playerStateObject != null)
+        {
+            playerState = playerStateObject.GetComponent<PlayerState>();
+        }
     }
 
     // Update is called once per frame
@@ -27,7 +35,7 @@ public class ScoreCounter : MonoBehaviour
     {
         if (textComponent != null)
         {
-            textComponent.SetText(ship.getScore().ToString());
+            textComponent.SetText(playerState.Score.ToString());
         }
     }
 }

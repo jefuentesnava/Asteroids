@@ -1,25 +1,40 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
-    private const float ThrusterSpeed = 12f;
-    private const float RotationSpeed = 8f;
-    private const int ExtraLifeAwardingThreshold = 10000;
+    //constants/readonlys
+    public const float ThrusterSpeed = 12f;
+    public const float RotationSpeed = 8f;
+    public readonly Vector3 DefaultPosition = new Vector3(0f, 0f, 1f);
+    public readonly Vector3 DefaultVelocity = new Vector3(0f, 0f, 1f);
 
-    private static int extraLives = 9999999;
-    private static int score = 0;
-    private static int extraLifeScore;
-
-    private bool inputEnabled = true;
-    private bool isWrappingHorizontally = false;
-    private bool isWrappingVertically = false;
+    //properties
+    public bool inputEnabled { get; private set; } = true;
+    public bool isWrappingHorizontally { get; private set; } = false;
+    public bool isWrappingVertically { get; private set; } = false;
+    
+    private PlayerState playerState;
 
     void Start()
     {
-        extraLifeScore = score;
+        //get access to player state
+        GameObject playerStateObject = null;
+        GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+
+        foreach (GameObject g in rootGameObjects)
+        {
+            if (g.transform.CompareTag("PlayerState"))
+            {
+                playerStateObject = g;
+            }
+        }
+
+        if (playerStateObject != null)
+        {
+            playerState = playerStateObject.GetComponent<PlayerState>();
+        }
     }
 
     void FixedUpdate()
@@ -32,33 +47,6 @@ public class Ship : MonoBehaviour
         screenWrap();
     }
 
-    //basic getters
-    public int getExtraLives()
-    {
-        return extraLives;
-    }
-
-    public void addScore(int points)
-    {
-        score += points;
-    }
-
-    public void addExtraLifeScore(int points)
-    {
-        extraLifeScore += points;
-    }
-
-    public int getScore()
-    {
-        return score;
-    }
-
-    public bool getInputEnabled()
-    {
-        return inputEnabled;
-    }
-
-    //movement keybinds
     public void getUserInput()
     {
         if (Input.GetKey(KeyCode.W))
@@ -84,7 +72,7 @@ public class Ship : MonoBehaviour
             collider.gameObject.CompareTag("MediumAsteroid") ||
             collider.gameObject.CompareTag("SmallAsteroid"))
         {
-            if (extraLives > 0)
+            if (playerState.ExtraLives > 0)
             {
                 StartCoroutine(respawn());
             }
@@ -98,23 +86,13 @@ public class Ship : MonoBehaviour
     //coroutine for OnTriggerEnter2D()
     private IEnumerator respawn()
     {
-        extraLives--;
+        playerState.ExtraLives--;
 
-        //disable input
         inputEnabled = false;
-
-        //hide sprite
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
-
-        //reset ship to original position
-        gameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
-
-        //reset rigidbody physics
-        Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector3(0f, 0f, 0f);
-
-        //disable collider
         gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+        gameObject.transform.localPosition = DefaultPosition;
+        gameObject.GetComponent<Rigidbody2D>().velocity = DefaultVelocity;
 
         yield return new WaitForSeconds(1.0f);
 
@@ -123,13 +101,13 @@ public class Ship : MonoBehaviour
         gameObject.GetComponent<PolygonCollider2D>().enabled = true;
     }
 
-    //extra life awarding functionality
+
     private void awardExtraLifeCheck()
     {
-        if (extraLifeScore > ExtraLifeAwardingThreshold)
+        if (playerState.ExtraLifeScore > PlayerState.ExtraLifeAwardingThreshold)
         {
-            extraLives++;
-            extraLifeScore -= ExtraLifeAwardingThreshold;
+            playerState.ExtraLives++;
+            playerState.ExtraLifeScore -= PlayerState.ExtraLifeAwardingThreshold;
         }
     }
 
