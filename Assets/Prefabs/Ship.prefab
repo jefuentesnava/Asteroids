@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2733663428813472392}
   - component: {fileID: 2733663428813472395}
   - component: {fileID: 2733663428813472398}
+  - component: {fileID: 2733663428813472396}
   - component: {fileID: 2733663428813472393}
   - component: {fileID: 2733663428813472399}
-  - component: {fileID: 2733663428813472396}
+  - component: {fileID: 4261028453942951589}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Ship
@@ -107,33 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2733663428813472393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733663428813472394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2120ef664c36d0d439a61595c98733ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2733663428813472399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733663428813472394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be11c7187558664abc2c0eb67f7039e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firingPoint: {fileID: 2733663429029935156}
-  missilePrefab: {fileID: 6229772663671384171, guid: 66ce090251df271408a37c9d1e656ef8,
-    type: 3}
 --- !u!60 &2733663428813472396
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -172,6 +146,45 @@ PolygonCollider2D:
       - {x: 0.26999998, y: -0.235}
       - {x: -0.26999998, y: -0.24499999}
       - {x: -0.26, y: -0.24499999}
+--- !u!114 &2733663428813472393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733663428813472394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2120ef664c36d0d439a61595c98733ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2733663428813472399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733663428813472394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be11c7187558664abc2c0eb67f7039e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firingPoint: {fileID: 2733663429029935156}
+  missilePrefab: {fileID: 6229772663671384171, guid: 66ce090251df271408a37c9d1e656ef8,
+    type: 3}
+--- !u!114 &4261028453942951589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733663428813472394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b623311f4b954a24ca82f95227c96b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2733663429029935159
 GameObject:
   m_ObjectHideFlags: 0

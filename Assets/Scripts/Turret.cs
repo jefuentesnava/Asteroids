@@ -5,7 +5,6 @@ public class Turret : MonoBehaviour
     public Transform firingPoint;
     public GameObject missilePrefab;
 
-    private bool inputEnabled;
     private Ship ship;
 
     void Start()

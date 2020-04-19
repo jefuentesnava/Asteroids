@@ -12,9 +12,7 @@ public class Ship : MonoBehaviour
 
     //properties
     public bool inputEnabled { get; private set; } = true;
-    public bool isWrappingHorizontally { get; private set; } = false;
-    public bool isWrappingVertically { get; private set; } = false;
-    
+
     private PlayerState playerState;
 
     void Start()
@@ -44,7 +42,7 @@ public class Ship : MonoBehaviour
             getUserInput();
         }
         awardExtraLifeCheck();
-        screenWrap();
+
     }
 
     public void getUserInput()
@@ -109,58 +107,5 @@ public class Ship : MonoBehaviour
             playerState.ExtraLives++;
             playerState.ExtraLifeScore -= PlayerState.ExtraLifeAwardingThreshold;
         }
-    }
-
-    //screen-wrapping functions
-    private bool isVisible()
-    {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-
-        foreach (Renderer r in renderers)
-        {
-            if (r.isVisible)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private void screenWrap()
-    {
-        Camera camera = Camera.main;
-        Vector3 viewportPosition = camera.WorldToViewportPoint(transform.position);
-        Vector3 newPosition = transform.position;
-
-        //if ship is visible, no wrapping is necessary
-        if (isVisible())
-        {
-            isWrappingHorizontally = false;
-            isWrappingVertically = false;
-            return;
-        }
-
-        //if ship is currently wrapping, do nothing
-        if (isWrappingHorizontally && isWrappingVertically)
-        {
-            return;
-        }
-
-        //detect whether ship has disappeared horizontally...
-        if (!isWrappingHorizontally && (viewportPosition.x > 1 || viewportPosition.x < 0))
-        {
-            newPosition.x = -newPosition.x;
-            isWrappingHorizontally = true;
-        }
-
-        //...or vertically
-        if (!isWrappingVertically && (viewportPosition.y > 1 || viewportPosition.y < 0))
-        {
-            newPosition.y = -newPosition.y;
-            isWrappingVertically = true;
-        }
-
-        transform.position = newPosition;
     }
 }

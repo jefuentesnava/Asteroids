@@ -150,9 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbef6dad196ff747beb9968ae811a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 0
-  ExtraLifeScore: 0
-  ExtraLives: 0
 --- !u!4 &403475083
 Transform:
   m_ObjectHideFlags: 0
@@ -1256,9 +1253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4e5ded7b7471446aa5b606010fdca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 0
-  ExtraLifeScore: 0
-  ExtraLives: 0
 --- !u!4 &1729507046
 Transform:
   m_ObjectHideFlags: 0

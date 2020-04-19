@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8894538427177355340}
   - component: {fileID: 4131633200467043313}
   - component: {fileID: 7281279712706941048}
+  - component: {fileID: 6724082506071099327}
   m_Layer: 0
   m_Name: Medium Asteroid
   m_TagString: MediumAsteroid
@@ -211,3 +212,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smallAsteroidPrefab: {fileID: 5014609234981081138, guid: 33b374c0cc9e0b94ba9240ffafeff70c,
     type: 3}
+--- !u!114 &6724082506071099327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284955854297512415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b623311f4b954a24ca82f95227c96b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
