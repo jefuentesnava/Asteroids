@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class SmallAsteroid : MonoBehaviour
 {
+    private const float WrappingTimeOut = 2f;
+
     private bool isCollided = false;
     private bool isWrappingHorizontally = false;
     private bool isWrappingVertically = false;
-    private float initialVelocty;
+    private float wrappingTimer = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        initialVelocty = Random.Range(125f, 150f);
         this.transform.eulerAngles = new Vector3(0f, 0f, Random.Range(0, 360));
+        float initialVelocty = Random.Range(125f, 150f);
         GetComponent<Rigidbody2D>().AddForce(transform.up * initialVelocty);
     }
 
@@ -69,9 +71,20 @@ public class SmallAsteroid : MonoBehaviour
             return;
         }
 
-        //if asteroid is currently wrapping, do nothing
+        //if asteroid is currently wrapping, check for timeout
         if (isWrappingHorizontally && isWrappingVertically)
         {
+            wrappingTimer += Time.deltaTime;
+
+            if (wrappingTimer > WrappingTimeOut)
+            {
+                //return asteroid to viewport
+                transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 1f));
+
+                //reset timer
+                wrappingTimer = 0f;
+            }
+
             return;
         }
 

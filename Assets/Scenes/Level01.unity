@@ -516,6 +516,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: LargeAsteroid
       objectReference: {fileID: 0}
+    - target: {fileID: 194202874055641163, guid: 82e056fa485647d439d2bb72c5b79be7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 194202874055641165, guid: 82e056fa485647d439d2bb72c5b79be7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -589,6 +594,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: LargeAsteroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 194202874055641163, guid: 82e056fa485647d439d2bb72c5b79be7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 194202874055641165, guid: 82e056fa485647d439d2bb72c5b79be7,
         type: 3}
@@ -792,6 +802,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: LargeAsteroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 194202874055641163, guid: 82e056fa485647d439d2bb72c5b79be7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 194202874055641165, guid: 82e056fa485647d439d2bb72c5b79be7,
         type: 3}
@@ -1026,6 +1041,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: LargeAsteroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 194202874055641163, guid: 82e056fa485647d439d2bb72c5b79be7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 194202874055641165, guid: 82e056fa485647d439d2bb72c5b79be7,
         type: 3}

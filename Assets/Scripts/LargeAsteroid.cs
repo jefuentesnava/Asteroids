@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class LargeAsteroid : MonoBehaviour
 {
-    public GameObject mediumAsteroidPrefab;
-
     private const float InitialVelocity = 50f;
-    
+    private const float WrappingTimeOut = 2f;
+
     private bool isCollided = false;
     private bool isWrappingHorizontally = false;
     private bool isWrappingVertically = false;
+    private float wrappingTimer = 0.0f;
+
+    public GameObject mediumAsteroidPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -83,11 +85,23 @@ public class LargeAsteroid : MonoBehaviour
             return;
         }
 
-        //if asteroid is currently wrapping, do nothing
+        //if asteroid is currently wrapping, check for timeout
         if (isWrappingHorizontally && isWrappingVertically)
         {
+            wrappingTimer += Time.deltaTime;
+
+            if (wrappingTimer > WrappingTimeOut)
+            {
+                //return asteroid to viewport
+                transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 1f));
+
+                //reset timer
+                wrappingTimer = 0f;
+            }
+
             return;
         }
+
 
         //detect whether asteroid has disappeared horizontally...
         if (!isWrappingHorizontally && (viewportPosition.x > 1 || viewportPosition.x < 0))
@@ -104,5 +118,10 @@ public class LargeAsteroid : MonoBehaviour
         }
 
         transform.position = newPosition;
+    }
+
+    private void wrappingTimeout()
+    {
+
     }
 }
