@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LivesCounter : MonoBehaviour
 {
-    private const int DefaultNumberOfExtraLives = 3;
-    private int currentNumberOfExtraLives = DefaultNumberOfExtraLives;
-    
     private Ship ship;
-    private GameObject[] lifeIcons;
+    private TMP_Text textComponent;
 
     // Start is called before the first frame update
     void Start()
@@ -21,33 +19,15 @@ public class LivesCounter : MonoBehaviour
             ship = shipObject.GetComponent<Ship>();
         }
 
-        //get access to life icons
-        lifeIcons = new GameObject[DefaultNumberOfExtraLives];
-        for (int i = 0; i < DefaultNumberOfExtraLives; i++)
-        {
-            lifeIcons[i] = transform.GetChild(i).gameObject;
-        }
+        textComponent = transform.Find("Life Counter").GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentNumberOfExtraLives = ship.getExtraLives();
-
-        if (currentNumberOfExtraLives == 2)
+        if (textComponent != null)
         {
-            lifeIcons[2].SetActive(false);
-        }
-        else if (currentNumberOfExtraLives == 1)
-        {
-            lifeIcons[2].SetActive(false);
-            lifeIcons[1].SetActive(false);
-        }
-        else if (currentNumberOfExtraLives == 0)
-        {
-            lifeIcons[2].SetActive(false);
-            lifeIcons[1].SetActive(false);
-            lifeIcons[0].SetActive(false);
+            textComponent.SetText(ship.getExtraLives().ToString());
         }
     }
 }

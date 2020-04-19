@@ -31,7 +31,7 @@ public class Missile : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         screenWrap();
         timer += Time.deltaTime;
@@ -48,16 +48,19 @@ public class Missile : MonoBehaviour
         if (collider.gameObject.CompareTag("LargeAsteroid"))
         {
             ship.addScore(LargeAsteroidPointValue);
+            ship.addExtraLifeScore(LargeAsteroidPointValue);
             Destroy(gameObject);
         }
         if (collider.gameObject.CompareTag("MediumAsteroid"))
         {
             ship.addScore(MediumAsteroidPointValue);
+            ship.addExtraLifeScore(MediumAsteroidPointValue);
             Destroy(gameObject);
         }
         if (collider.gameObject.CompareTag("SmallAsteroid"))
         {
             ship.addScore(SmallAsteroidPointValue);
+            ship.addExtraLifeScore(SmallAsteroidPointValue);
             Destroy(gameObject);
         }
     }

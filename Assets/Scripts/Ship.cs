@@ -5,15 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
-    private const float thrusterSpeed = 12f;
-    private const float rotationSpeed = 8f;
+    private const float ThrusterSpeed = 12f;
+    private const float RotationSpeed = 8f;
+    private const int ExtraLifeAwardingThreshold = 10000;
 
     private static int extraLives = 3;
     private static int score = 0;
+    private static int extraLifeScore;
 
     private bool inputEnabled = true;
     private bool isWrappingHorizontally = false;
     private bool isWrappingVertically = false;
+
+    void Start()
+    {
+        extraLifeScore = score;
+    }
 
     void FixedUpdate()
     {
@@ -21,27 +28,11 @@ public class Ship : MonoBehaviour
         {
             getUserInput();
         }
+        awardExtraLifeCheck();
         screenWrap();
     }
 
-    public void getUserInput()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            GetComponent<Rigidbody2D>().AddForce(transform.up * thrusterSpeed);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(Vector3.forward * rotationSpeed);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(-Vector3.forward * rotationSpeed);
-        }
-    }
-
+    //basic getters
     public int getExtraLives()
     {
         return extraLives;
@@ -52,6 +43,11 @@ public class Ship : MonoBehaviour
         score += points;
     }
 
+    public void addExtraLifeScore(int points)
+    {
+        extraLifeScore += points;
+    }
+
     public int getScore()
     {
         return score;
@@ -60,6 +56,25 @@ public class Ship : MonoBehaviour
     public bool getInputEnabled()
     {
         return inputEnabled;
+    }
+
+    //movement keybinds
+    public void getUserInput()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            GetComponent<Rigidbody2D>().AddForce(transform.up * ThrusterSpeed);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(Vector3.forward * RotationSpeed);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(-Vector3.forward * RotationSpeed);
+        }
     }
 
     //ship-asteroid collision behavior; called when ship collides with asteroid
@@ -106,6 +121,16 @@ public class Ship : MonoBehaviour
         inputEnabled = true;
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+    }
+
+    //extra life awarding functionality
+    private void awardExtraLifeCheck()
+    {
+        if (extraLifeScore > ExtraLifeAwardingThreshold)
+        {
+            extraLives++;
+            extraLifeScore -= ExtraLifeAwardingThreshold;
+        }
     }
 
     //screen-wrapping functions
