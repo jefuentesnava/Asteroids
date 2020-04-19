@@ -6,7 +6,7 @@ public class GameOver : MonoBehaviour
 {
     public void getUserName()
     {
-        Debug.Log(transform.Find("Name Input").GetComponent<TMP_InputField>().text);
+        print(transform.Find("Name Input").GetComponent<TMP_InputField>().text);
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }

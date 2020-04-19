@@ -3,8 +3,8 @@
 public class ScreenWrap : MonoBehaviour
 {
     //properties
-    public bool isWrappingHorizontally { get; private set; } = false;
-    public bool isWrappingVertically { get; private set; } = false;
+    public bool IsWrappingHorizontally { get; private set; } = false;
+    public bool IsWrappingVertically { get; private set; } = false;
     public float WrappingTimeOut { get; set; } = 2f;
     public float WrappingTimer { get; private set; } = 0.0f;
 
@@ -37,13 +37,13 @@ public class ScreenWrap : MonoBehaviour
         //if object is visible, no wrapping is necessary
         if (isVisible())
         {
-            isWrappingHorizontally = false;
-            isWrappingVertically = false;
+            IsWrappingHorizontally = false;
+            IsWrappingVertically = false;
             return;
         }
 
         //if object is currently wrapping, check for timeout
-        if (isWrappingHorizontally && isWrappingVertically)
+        if (IsWrappingHorizontally && IsWrappingVertically)
         {
             WrappingTimer += Time.deltaTime;
 
@@ -60,17 +60,17 @@ public class ScreenWrap : MonoBehaviour
         }
 
         //detect whether object has disappeared horizontally...
-        if (!isWrappingHorizontally && (viewportPosition.x > 1 || viewportPosition.x < 0))
+        if (!IsWrappingHorizontally && (viewportPosition.x > 1 || viewportPosition.x < 0))
         {
             newPosition.x = -newPosition.x;
-            isWrappingHorizontally = true;
+            IsWrappingHorizontally = true;
         }
 
         //...or vertically
-        if (!isWrappingVertically && (viewportPosition.y > 1 || viewportPosition.y < 0))
+        if (!IsWrappingVertically && (viewportPosition.y > 1 || viewportPosition.y < 0))
         {
             newPosition.y = -newPosition.y;
-            isWrappingVertically = true;
+            IsWrappingVertically = true;
         }
 
         transform.position = newPosition;

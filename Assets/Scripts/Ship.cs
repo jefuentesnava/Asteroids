@@ -11,7 +11,7 @@ public class Ship : MonoBehaviour
     public readonly Vector3 DefaultVelocity = new Vector3(0f, 0f, 1f);
 
     //properties
-    public bool inputEnabled { get; private set; } = true;
+    public bool InputEnabled { get; private set; } = true;
 
     private PlayerState playerState;
 
@@ -37,7 +37,7 @@ public class Ship : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (inputEnabled)
+        if (InputEnabled)
         {
             getUserInput();
         }
@@ -86,7 +86,7 @@ public class Ship : MonoBehaviour
     {
         playerState.ExtraLives--;
 
-        inputEnabled = false;
+        InputEnabled = false;
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<PolygonCollider2D>().enabled = false;
         gameObject.transform.localPosition = DefaultPosition;
@@ -94,7 +94,7 @@ public class Ship : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        inputEnabled = true;
+        InputEnabled = true;
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.GetComponent<PolygonCollider2D>().enabled = true;
     }

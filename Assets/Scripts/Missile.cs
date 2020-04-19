@@ -9,15 +9,16 @@ public class Missile : MonoBehaviour
     public const int MediumAsteroidPointValue = 50;
     public const int SmallAsteroidPointValue = 100;
 
-    public float timer { get; private set; } = 0.0f;
-    public Rigidbody2D rigidBody;
+    public float Timer { get; private set; } = 0.0f;
+    
+    public Rigidbody2D RigidBody;
 
     private PlayerState playerState;
 
     // Start is called before the first frame update
     void Start()
     {
-        rigidBody.velocity = transform.up * MissileSpeed;
+        RigidBody.velocity = transform.up * MissileSpeed;
 
         //get access to player state
         GameObject playerStateObject = null;
@@ -40,9 +41,9 @@ public class Missile : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        timer += Time.deltaTime;
+        Timer += Time.deltaTime;
 
-        if (timer > TimeOut)
+        if (Timer > TimeOut)
         {
             Destroy(gameObject);
         }

@@ -3,7 +3,8 @@
 public class LargeAsteroid : MonoBehaviour
 {
     public const float InitialVelocity = 50f;
-    public bool isCollided { get; private set; } = false;
+    public bool IsCollided { get; private set; } = false;
+    
     public GameObject mediumAsteroidPrefab;
 
     // Start is called before the first frame update
@@ -19,12 +20,12 @@ public class LargeAsteroid : MonoBehaviour
         if (collider.tag == "Missile")
         {
             //prevent future calls after initial collision
-            if (isCollided)
+            if (IsCollided)
             {
                 return;
             }
 
-            isCollided = true;
+            IsCollided = true;
 
             //instantiate two medium asteroids
             Instantiate(

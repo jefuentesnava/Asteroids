@@ -2,7 +2,7 @@
 
 public class MediumAsteroid : MonoBehaviour
 {
-    public bool isCollided { get; private set; } = false;
+    public bool IsCollided { get; private set; } = false;
     public GameObject smallAsteroidPrefab;
 
     // Start is called before the first frame update
@@ -19,12 +19,12 @@ public class MediumAsteroid : MonoBehaviour
         if (collider.tag == "Missile")
         {
             //prevent future calls after initial collision
-            if (isCollided)
+            if (IsCollided)
             {
                 return;
             }
 
-            isCollided = true;
+            IsCollided = true;
             //instantiate two small asteroids
             Instantiate(
                 smallAsteroidPrefab,
