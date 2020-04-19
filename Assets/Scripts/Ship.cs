@@ -9,7 +9,7 @@ public class Ship : MonoBehaviour
     private const float RotationSpeed = 8f;
     private const int ExtraLifeAwardingThreshold = 10000;
 
-    private static int extraLives = 3;
+    private static int extraLives = 9999999;
     private static int score = 0;
     private static int extraLifeScore;
 
