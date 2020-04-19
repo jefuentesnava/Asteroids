@@ -10,7 +10,7 @@ public class Missile : MonoBehaviour
     public const int SmallAsteroidPointValue = 100;
 
     public float Timer { get; private set; } = 0.0f;
-    
+
     public Rigidbody2D RigidBody;
 
     private PlayerState playerState;
@@ -70,5 +70,7 @@ public class Missile : MonoBehaviour
             playerState.ExtraLifeScore += SmallAsteroidPointValue;
             Destroy(gameObject);
         }
+
+        playerState.save();
     }
 }

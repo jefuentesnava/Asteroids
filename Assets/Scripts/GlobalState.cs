@@ -23,4 +23,11 @@ public class GlobalState : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void reset()
+    {
+        Score = 0;
+        ExtraLifeScore = 0;
+        ExtraLives = defaultNumberOfExtraLives;
+    }
 }

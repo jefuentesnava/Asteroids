@@ -106,6 +106,7 @@ public class Ship : MonoBehaviour
         {
             playerState.ExtraLives++;
             playerState.ExtraLifeScore -= PlayerState.ExtraLifeAwardingThreshold;
+            playerState.save();
         }
     }
 }
