@@ -1,35 +1,56 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 
 public class Leaderboard : MonoBehaviour
 {
     private TMP_Text textComponent;
-    private SortedList<string, string> leaderboard;
-    string leaderboardStringFinal;
+
+    string leaderboardStringFinal = "High Scores\n";
+
     void Start()
     {
         textComponent = GetComponent<TMP_Text>();
 
         string leaderboardString = PlayerPrefs.GetString("leaderboard");
         string[] leaderboardStrings = leaderboardString.Split(',');
+        List<LeaderboardEntry> leaderboardEntries = new List<LeaderboardEntry>();
 
-        leaderboard = new SortedList<string, string>();
-
+        //populate leaderboardEntries
         for (int i = 0; i < leaderboardStrings.Length; i += 2)
         {
-            leaderboard.Add(leaderboardStrings[i], leaderboardStrings[i + 1]);
+            string username = leaderboardStrings[i];
+            int score = int.Parse(leaderboardStrings[i + 1]);
+
+            LeaderboardEntry entry = new LeaderboardEntry(username, score);
+            leaderboardEntries.Add(entry);
         }
 
-        leaderboardStringFinal = "High Scores\n";
+        //sort entries in ascending order
+        leaderboardEntries.Sort((a, b) => b.score.CompareTo(a.score));
 
-        foreach (KeyValuePair<string, string> kvp in leaderboard)
+        //build string to display top ten scores
+        if (leaderboardEntries.Count < 10)
         {
-            leaderboardStringFinal += $"{kvp.Key}: {kvp.Value}\n";
+            foreach (LeaderboardEntry e in leaderboardEntries)
+            {
+                leaderboardStringFinal += $"{e.username}: {e.score.ToString()}\n";
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                LeaderboardEntry entry = leaderboardEntries.ElementAt(i);
+                string username = entry.username;
+                int score = entry.score;
+
+                leaderboardStringFinal += $"{username}: {score.ToString()}\n";
+            }
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (textComponent != null)

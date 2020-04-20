@@ -21,7 +21,6 @@ public class GameOver : MonoBehaviour
         }
 
         PlayerPrefs.SetString("leaderboard", entry);
-        //print($"Added: {username}, {score}");
         PlayerPrefs.Save();
 
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
