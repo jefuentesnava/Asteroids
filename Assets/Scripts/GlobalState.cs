@@ -9,7 +9,7 @@ public class GlobalState : MonoBehaviour
     public int ExtraLifeScore { get; set; }
     public int ExtraLives { get; set; }
 
-    void Awake()
+    private void Awake()
     {
         if (instance == null)
         {
@@ -24,7 +24,7 @@ public class GlobalState : MonoBehaviour
         }
     }
 
-    public void reset()
+    public void Reset()
     {
         Score = 0;
         ExtraLifeScore = 0;

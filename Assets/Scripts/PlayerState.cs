@@ -2,15 +2,13 @@
 
 public class PlayerState : MonoBehaviour
 {
-    //constants
     public const int ExtraLifeAwardingThreshold = 10000;
 
-    //properties
     public int Score { get; set; }
     public int ExtraLifeScore { get; set; }
     public int ExtraLives { get; set; }
 
-    void Start()
+    private void Start()
     {
         //load state
         Score = GlobalState.instance.Score;
@@ -18,7 +16,7 @@ public class PlayerState : MonoBehaviour
         ExtraLives = GlobalState.instance.ExtraLives;
     }
 
-    public void save()
+    public void Save()
     {
         GlobalState.instance.Score = Score;
         GlobalState.instance.ExtraLifeScore = ExtraLifeScore;

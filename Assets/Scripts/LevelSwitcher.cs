@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEditor.PackageManager;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelSwitcher : MonoBehaviour
 {
     private PlayerState playerState;
-    private int asteroidCount;
 
-    void Start()
+    private void Start()
     {
         //get access to player state
         GameObject playerStateObject = null;
@@ -20,29 +21,17 @@ public class LevelSwitcher : MonoBehaviour
             }
         }
 
-        if (playerStateObject != null)
-        {
-            playerState = playerStateObject.GetComponent<PlayerState>();
-        }
+        playerState = playerStateObject.GetComponent<PlayerState>();
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        asteroidCount = 0;
-
+        var asteroidCount = 0;
         GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
 
         foreach (GameObject g in rootGameObjects)
         {
-            if (g.transform.CompareTag("LargeAsteroid"))
-            {
-                asteroidCount++;
-            }
-            else if (g.transform.CompareTag("MediumAsteroid"))
-            {
-                asteroidCount++;
-            }
-            else if (g.transform.CompareTag("SmallAsteroid"))
+            if (g.CompareTag("LargeAsteroid") || g.CompareTag("MediumAsteroid") || g.CompareTag("SmallAsteroid"))
             {
                 asteroidCount++;
             }
@@ -50,9 +39,9 @@ public class LevelSwitcher : MonoBehaviour
 
         if (asteroidCount == 0)
         {
-            playerState.save();
+            playerState.Save();
 
-            string sceneName = SceneManager.GetActiveScene().name;
+            var sceneName = SceneManager.GetActiveScene().name;
 
             switch (sceneName)
             {

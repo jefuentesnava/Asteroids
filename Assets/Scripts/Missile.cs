@@ -3,20 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class Missile : MonoBehaviour
 {
-    public const float TimeOut = 0.75f;
+    public const float Timeout = 0.75f;
     public const float MissileSpeed = 20f;
     public const int LargeAsteroidPointValue = 20;
     public const int MediumAsteroidPointValue = 50;
     public const int SmallAsteroidPointValue = 100;
 
     public float Timer { get; private set; } = 0.0f;
-
     public Rigidbody2D RigidBody;
-
     private PlayerState playerState;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         RigidBody.velocity = transform.up * MissileSpeed;
 
@@ -31,46 +28,41 @@ public class Missile : MonoBehaviour
                 playerStateObject = g;
             }
         }
-
-        if (playerStateObject != null)
-        {
-            playerState = playerStateObject.GetComponent<PlayerState>();
-        }
+        playerState = playerStateObject.GetComponent<PlayerState>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        Timer += Time.deltaTime;
+        Timer += Time.fixedDeltaTime;
 
-        if (Timer > TimeOut)
+        if (Timer > Timeout)
         {
             Destroy(gameObject);
         }
     }
 
     //missile-asteroid collision behavior; called when missile collides with asteroid
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D c)
     {
-        if (collider.gameObject.CompareTag("LargeAsteroid"))
+        if (c.gameObject.CompareTag("LargeAsteroid"))
         {
             playerState.Score += LargeAsteroidPointValue;
             playerState.ExtraLifeScore += LargeAsteroidPointValue;
             Destroy(gameObject);
         }
-        if (collider.gameObject.CompareTag("MediumAsteroid"))
+        if (c.gameObject.CompareTag("MediumAsteroid"))
         {
             playerState.Score += MediumAsteroidPointValue;
             playerState.ExtraLifeScore += MediumAsteroidPointValue;
             Destroy(gameObject);
         }
-        if (collider.gameObject.CompareTag("SmallAsteroid"))
+        if (c.gameObject.CompareTag("SmallAsteroid"))
         {
             playerState.Score += SmallAsteroidPointValue;
             playerState.ExtraLifeScore += SmallAsteroidPointValue;
             Destroy(gameObject);
         }
 
-        playerState.save();
+        playerState.Save();
     }
 }

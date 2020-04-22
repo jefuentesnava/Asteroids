@@ -1,14 +1,13 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class LivesCounter : MonoBehaviour
 {
     private PlayerState playerState;
     private TMP_Text textComponent;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         textComponent = transform.Find("Life Counter").GetComponent<TMP_Text>();
 
@@ -24,18 +23,11 @@ public class LivesCounter : MonoBehaviour
             }
         }
 
-        if (playerStateObject != null)
-        {
-            playerState = playerStateObject.GetComponent<PlayerState>();
-        }
+        playerState = playerStateObject.GetComponent<PlayerState>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if (textComponent != null)
-        {
-            textComponent.SetText(playerState.ExtraLives.ToString());
-        }
+        textComponent.SetText(playerState.ExtraLives.ToString());
     }
 }

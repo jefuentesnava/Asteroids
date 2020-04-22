@@ -1,14 +1,13 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class ScoreCounter : MonoBehaviour
 {
     private PlayerState playerState;
     private TMP_Text textComponent;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         textComponent = GetComponent<TMP_Text>();
 
@@ -23,19 +22,12 @@ public class ScoreCounter : MonoBehaviour
                 playerStateObject = g;
             }
         }
+        playerState = playerStateObject.GetComponent<PlayerState>();
 
-        if (playerStateObject != null)
-        {
-            playerState = playerStateObject.GetComponent<PlayerState>();
-        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if (textComponent != null)
-        {
-            textComponent.SetText(playerState.Score.ToString());
-        }
+        textComponent.SetText(playerState.Score.ToString());
     }
 }

@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameOver : MonoBehaviour
 {
-    public void getUserName()
+    public void GetUserName()
     {
-        string username = transform.Find("Name Input").GetComponent<TMP_InputField>().text.ToUpper();
-        string score = GlobalState.instance.Score.ToString();
-
-        string leaderboardString = PlayerPrefs.GetString("leaderboard");
+        var inputFieldComponent = transform.Find("Name Input").GetComponent<TMP_InputField>();
+        var username = inputFieldComponent.text.ToUpper();
+        var score = GlobalState.instance.Score.ToString();
+        var leaderboardString = PlayerPrefs.GetString("leaderboard");
         string entry;
+
         if (leaderboardString == "")
         {
             entry = $"{username},{score}";

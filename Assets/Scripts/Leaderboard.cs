@@ -1,61 +1,55 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
 {
-    private TMP_Text textComponent;
+    private const int MaxNumberOfDisplayedScores = 10;
 
-    string leaderboardStringFinal = "High Scores\n";
+    private string leaderboardStringFinal = "High Scores\n";
 
-    void Start()
+    private void Start()
     {
-        textComponent = GetComponent<TMP_Text>();
+        var textComponent = GetComponent<TMP_Text>();
+        var leaderboard = PlayerPrefs.GetString("leaderboard");
 
-        string leaderboardString = PlayerPrefs.GetString("leaderboard");
-        string[] leaderboardStrings = leaderboardString.Split(',');
-        List<LeaderboardEntry> leaderboardEntries = new List<LeaderboardEntry>();
-
-        //populate leaderboardEntries
-        for (int i = 0; i < leaderboardStrings.Length; i += 2)
+        //if leaderboard isn't empty...
+        if (!leaderboard.Equals(""))
         {
-            string username = leaderboardStrings[i];
-            int score = int.Parse(leaderboardStrings[i + 1]);
+            string[] leaderboardStrings = leaderboard.Split(',');
+            var leaderboardEntries = new List<LeaderboardEntry>();
 
-            LeaderboardEntry entry = new LeaderboardEntry(username, score);
-            leaderboardEntries.Add(entry);
-        }
-
-        //sort entries in ascending order
-        leaderboardEntries.Sort((a, b) => b.score.CompareTo(a.score));
-
-        //build string to display top ten scores
-        if (leaderboardEntries.Count < 10)
-        {
-            foreach (LeaderboardEntry e in leaderboardEntries)
+            //...populate leaderboardEntries...
+            for (var i = 0; i < leaderboardStrings.Length; i += 2)
             {
-                leaderboardStringFinal += $"{e.username}: {e.score.ToString()}\n";
+                var username = leaderboardStrings[i];
+                var score = int.Parse(leaderboardStrings[i + 1]);
+
+                var entry = new LeaderboardEntry(username, score);
+                leaderboardEntries.Add(entry);
+            }
+
+            //...sort entries in ascending order...
+            leaderboardEntries.Sort((a, b) => b.score.CompareTo(a.score));
+
+            var numberOfScoresToDisplay = leaderboardEntries.Count();
+            if (MaxNumberOfDisplayedScores < numberOfScoresToDisplay)
+            {
+                numberOfScoresToDisplay = MaxNumberOfDisplayedScores;
+            }
+
+            //...then build string to display top ten scores
+            for (var i = 0; i < numberOfScoresToDisplay; i++)
+            {
+                var entry = leaderboardEntries.ElementAt(i);
+                var username = entry.username;
+                var score = entry.score;
+
+                leaderboardStringFinal += $"{username}: {score}\n";
             }
         }
-        else
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                LeaderboardEntry entry = leaderboardEntries.ElementAt(i);
-                string username = entry.username;
-                int score = entry.score;
 
-                leaderboardStringFinal += $"{username}: {score.ToString()}\n";
-            }
-        }
-    }
-
-    void Update()
-    {
-        if (textComponent != null)
-        {
-            textComponent.SetText(leaderboardStringFinal);
-        }
+        textComponent.SetText(leaderboardStringFinal);
     }
 }

@@ -4,18 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
-    //constants/readonlys
     public const float ThrusterSpeed = 12f;
     public const float RotationSpeed = 8f;
     public readonly Vector3 DefaultPosition = new Vector3(0f, 0f, 1f);
     public readonly Vector3 DefaultVelocity = new Vector3(0f, 0f, 1f);
 
-    //properties
     public bool InputEnabled { get; private set; } = true;
-
     private PlayerState playerState;
 
-    void Start()
+    private void Start()
     {
         //get access to player state
         GameObject playerStateObject = null;
@@ -28,24 +25,20 @@ public class Ship : MonoBehaviour
                 playerStateObject = g;
             }
         }
-
-        if (playerStateObject != null)
-        {
-            playerState = playerStateObject.GetComponent<PlayerState>();
-        }
+        playerState = playerStateObject.GetComponent<PlayerState>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (InputEnabled)
         {
-            getUserInput();
+            GetUserInput();
         }
-        awardExtraLifeCheck();
+        AwardExtraLifeCheck();
 
     }
 
-    public void getUserInput()
+    public void GetUserInput()
     {
         if (Input.GetKey(KeyCode.W))
         {
@@ -64,15 +57,15 @@ public class Ship : MonoBehaviour
     }
 
     //ship-asteroid collision behavior; called when ship collides with asteroid
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D c)
     {
-        if (collider.gameObject.CompareTag("LargeAsteroid") ||
-            collider.gameObject.CompareTag("MediumAsteroid") ||
-            collider.gameObject.CompareTag("SmallAsteroid"))
+        if (c.gameObject.CompareTag("LargeAsteroid") ||
+            c.gameObject.CompareTag("MediumAsteroid") ||
+            c.gameObject.CompareTag("SmallAsteroid"))
         {
             if (playerState.ExtraLives > 0)
             {
-                StartCoroutine(respawn());
+                StartCoroutine(Respawn());
             }
             else
             {
@@ -82,7 +75,7 @@ public class Ship : MonoBehaviour
     }
 
     //coroutine for OnTriggerEnter2D()
-    private IEnumerator respawn()
+    private IEnumerator Respawn()
     {
         playerState.ExtraLives--;
 
@@ -100,13 +93,13 @@ public class Ship : MonoBehaviour
     }
 
 
-    private void awardExtraLifeCheck()
+    private void AwardExtraLifeCheck()
     {
         if (playerState.ExtraLifeScore > PlayerState.ExtraLifeAwardingThreshold)
         {
             playerState.ExtraLives++;
             playerState.ExtraLifeScore -= PlayerState.ExtraLifeAwardingThreshold;
-            playerState.save();
+            playerState.Save();
         }
     }
 }

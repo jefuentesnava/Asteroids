@@ -2,40 +2,36 @@
 
 public class ScreenWrap : MonoBehaviour
 {
-    //properties
     public bool IsWrappingHorizontally { get; private set; } = false;
     public bool IsWrappingVertically { get; private set; } = false;
     public float WrappingTimeOut { get; set; } = 2f;
     public float WrappingTimer { get; private set; } = 0.0f;
 
-    void Update()
+    private void FixedUpdate()
     {
-        screenWrap();
+        WrapObject();
     }
 
-    private bool isVisible()
+    private bool IsVisible()
     {
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
         foreach (Renderer r in renderers)
         {
-            if (r.isVisible)
-            {
-                return true;
-            }
+            if (r.isVisible) return true;
         }
 
         return false;
     }
 
-    private void screenWrap()
+    private void WrapObject()
     {
-        Camera camera = Camera.main;
-        Vector3 viewportPosition = camera.WorldToViewportPoint(transform.position);
-        Vector3 newPosition = transform.position;
+        var camera = Camera.main;
+        var viewportPosition = camera.WorldToViewportPoint(transform.position);
+        var newPosition = transform.position;
 
         //if object is visible, no wrapping is necessary
-        if (isVisible())
+        if (IsVisible())
         {
             IsWrappingHorizontally = false;
             IsWrappingVertically = false;
@@ -45,7 +41,7 @@ public class ScreenWrap : MonoBehaviour
         //if object is currently wrapping, check for timeout
         if (IsWrappingHorizontally && IsWrappingVertically)
         {
-            WrappingTimer += Time.deltaTime;
+            WrappingTimer += Time.fixedDeltaTime;
 
             if (WrappingTimer > WrappingTimeOut)
             {
