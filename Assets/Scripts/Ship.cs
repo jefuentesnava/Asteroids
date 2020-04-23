@@ -55,7 +55,11 @@ public class Ship : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            StartCoroutine(Teleport());
+            if (!playerState.hasTeleported)
+            {
+                StartCoroutine(Teleport());
+                playerState.hasTeleported = true;
+            }
         }
     }
 
@@ -102,9 +106,11 @@ public class Ship : MonoBehaviour
         gameObject.GetComponent<PolygonCollider2D>().enabled = false;
 
         Camera camera = Camera.main;
-        Vector3 randomPosition = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), camera.nearClipPlane);
+
+        Vector3 randomPosition = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), -1f);
         randomPosition = camera.ViewportToWorldPoint(randomPosition);
-        gameObject.transform.localPosition = randomPosition;
+        randomPosition.z = -1f;
+        gameObject.transform.position = randomPosition;
 
         yield return new WaitForSeconds(0.25f);
         InputEnabled = true;

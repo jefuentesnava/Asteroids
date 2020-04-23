@@ -5,6 +5,8 @@ public class GlobalState : MonoBehaviour
     public const int defaultNumberOfExtraLives = 3;
 
     public static GlobalState instance;
+
+    public bool hasTeleported;
     public int Score { get; set; }
     public int ExtraLifeScore { get; set; }
     public int ExtraLives { get; set; }
@@ -16,6 +18,7 @@ public class GlobalState : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             instance = this;
 
+            hasTeleported = false;
             ExtraLives = defaultNumberOfExtraLives;
         }
         else if (instance != this)
