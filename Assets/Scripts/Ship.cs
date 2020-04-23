@@ -6,8 +6,6 @@ public class Ship : MonoBehaviour
 {
     public const float ThrusterSpeed = 12f;
     public const float RotationSpeed = 8f;
-    public readonly Vector3 DefaultPosition = new Vector3(0f, 0f, 1f);
-    public readonly Vector3 DefaultVelocity = new Vector3(0f, 0f, 1f);
 
     public bool InputEnabled { get; private set; } = true;
     private PlayerState playerState;
@@ -54,6 +52,11 @@ public class Ship : MonoBehaviour
         {
             transform.Rotate(-Vector3.forward * RotationSpeed);
         }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            StartCoroutine(Teleport());
+        }
     }
 
     //ship-asteroid collision behavior; called when ship collides with asteroid
@@ -82,13 +85,31 @@ public class Ship : MonoBehaviour
         InputEnabled = false;
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<PolygonCollider2D>().enabled = false;
-        gameObject.transform.localPosition = DefaultPosition;
-        gameObject.GetComponent<Rigidbody2D>().velocity = DefaultVelocity;
+        gameObject.transform.localPosition = Vector3.zero;
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
 
         yield return new WaitForSeconds(1.0f);
 
         InputEnabled = true;
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+    }
+
+    private IEnumerator Teleport()
+    {
+        InputEnabled = false;
+        gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+
+        Camera camera = Camera.main;
+        Vector3 randomPosition = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), camera.nearClipPlane);
+        randomPosition = camera.ViewportToWorldPoint(randomPosition);
+        gameObject.transform.localPosition = randomPosition;
+
+        yield return new WaitForSeconds(0.25f);
+        InputEnabled = true;
+
+        yield return new WaitForSeconds(1.0f);
         gameObject.GetComponent<PolygonCollider2D>().enabled = true;
     }
 
