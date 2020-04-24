@@ -8,6 +8,7 @@ public class Missile : MonoBehaviour
     public const int LargeAsteroidPointValue = 20;
     public const int MediumAsteroidPointValue = 50;
     public const int SmallAsteroidPointValue = 100;
+    public const int LargeSaucerPointValue = 200;
 
     public float Timer { get; private set; } = 0.0f;
     public Rigidbody2D RigidBody;
@@ -50,16 +51,25 @@ public class Missile : MonoBehaviour
             playerState.ExtraLifeScore += LargeAsteroidPointValue;
             Destroy(gameObject);
         }
+
         if (c.gameObject.CompareTag("MediumAsteroid"))
         {
             playerState.Score += MediumAsteroidPointValue;
             playerState.ExtraLifeScore += MediumAsteroidPointValue;
             Destroy(gameObject);
         }
+
         if (c.gameObject.CompareTag("SmallAsteroid"))
         {
             playerState.Score += SmallAsteroidPointValue;
             playerState.ExtraLifeScore += SmallAsteroidPointValue;
+            Destroy(gameObject);
+        }
+
+        if (c.gameObject.CompareTag("LargeSaucer"))
+        {
+            playerState.Score += LargeSaucerPointValue;
+            playerState.ExtraLifeScore += LargeSaucerPointValue;
             Destroy(gameObject);
         }
 

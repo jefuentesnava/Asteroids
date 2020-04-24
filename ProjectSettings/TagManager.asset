@@ -11,6 +11,7 @@ TagManager:
   - Ship
   - PlayerState
   - UI
+  - LargeSaucer
   layers:
   - Default
   - TransparentFX
