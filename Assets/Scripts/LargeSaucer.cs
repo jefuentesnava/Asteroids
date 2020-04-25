@@ -19,7 +19,7 @@ public class LargeSaucer : MonoBehaviour
     private IEnumerator Spawn()
     {
         GetComponent<ScreenWrap>().enabled = false;
-        yield return new WaitForSeconds(Random.Range(10.0f, 30.0f));
+        yield return new WaitForSeconds(5.0f);
         GetComponent<Rigidbody2D>().AddForce(transform.right * Velocity);
         yield return new WaitForSeconds(5.0f);
         GetComponent<ScreenWrap>().enabled = true;

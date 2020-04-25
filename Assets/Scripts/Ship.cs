@@ -68,7 +68,8 @@ public class Ship : MonoBehaviour
     {
         if (c.gameObject.CompareTag("LargeAsteroid") ||
             c.gameObject.CompareTag("MediumAsteroid") ||
-            c.gameObject.CompareTag("SmallAsteroid"))
+            c.gameObject.CompareTag("SmallAsteroid") ||
+            c.gameObject.CompareTag("SaucerMissile"))
         {
             if (playerState.ExtraLives > 0)
             {
