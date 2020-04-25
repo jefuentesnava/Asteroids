@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 1216782727}
   - component: {fileID: 1216782726}
   m_Layer: 0
-  m_Name: Controller
+  m_Name: Level Switcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
