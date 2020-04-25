@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class ShipTurret : MonoBehaviour
 {
     public Transform firingPoint;
     public GameObject missilePrefab;
