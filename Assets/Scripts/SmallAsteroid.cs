@@ -14,7 +14,7 @@ public class SmallAsteroid : MonoBehaviour
     //asteroid-missle collision behavior
     private void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.CompareTag("Missile"))
+        if (c.CompareTag("ShipMissile"))
         {
             //prevent future calls after initial collision
             if (IsCollided) return;

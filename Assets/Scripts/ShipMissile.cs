@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Missile : MonoBehaviour
+public class ShipMissile : MonoBehaviour
 {
     public const float Timeout = 0.75f;
     public const float MissileSpeed = 20f;

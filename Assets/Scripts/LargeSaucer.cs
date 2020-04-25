@@ -28,7 +28,7 @@ public class LargeSaucer : MonoBehaviour
     //asteroid-missle collision behavior
     private void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.CompareTag("Missile"))
+        if (c.CompareTag("ShipMissile"))
         {
             Destroy(gameObject);
         }
