@@ -8,21 +8,25 @@ public class GameOver : MonoBehaviour
     {
         var inputFieldComponent = transform.Find("Name Input").GetComponent<TMP_InputField>();
         var username = inputFieldComponent.text.ToUpper();
-        var score = GlobalState.instance.Score.ToString();
-        var leaderboardString = PlayerPrefs.GetString("leaderboard");
-        string entry;
 
-        if (leaderboardString == "")
+        if (username != "")
         {
-            entry = $"{username},{score}";
-        }
-        else
-        {
-            entry = $"{leaderboardString},{username},{score}";
-        }
+            var score = GlobalState.instance.Score.ToString();
+            var leaderboardString = PlayerPrefs.GetString("leaderboard");
+            string entry;
 
-        PlayerPrefs.SetString("leaderboard", entry);
-        PlayerPrefs.Save();
+            if (leaderboardString == "")
+            {
+                entry = $"{username},{score}";
+            }
+            else
+            {
+                entry = $"{leaderboardString},{username},{score}";
+            }
+
+            PlayerPrefs.SetString("leaderboard", entry);
+            PlayerPrefs.Save();
+        }
 
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
