@@ -7,7 +7,7 @@ public class Leaderboard : MonoBehaviour
 {
     private const int MaxNumberOfDisplayedScores = 10;
 
-    private string leaderboardStringFinal = "High Scores\n";
+    private string LeaderboardStringFinal = "High Scores\n";
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class Leaderboard : MonoBehaviour
             }
 
             //...sort entries in ascending order...
-            leaderboardEntries.Sort((a, b) => b.score.CompareTo(a.score));
+            leaderboardEntries.Sort((a, b) => b.Score.CompareTo(a.Score));
 
             var numberOfScoresToDisplay = leaderboardEntries.Count();
             if (MaxNumberOfDisplayedScores < numberOfScoresToDisplay)
@@ -43,13 +43,13 @@ public class Leaderboard : MonoBehaviour
             for (var i = 0; i < numberOfScoresToDisplay; i++)
             {
                 var entry = leaderboardEntries.ElementAt(i);
-                var username = entry.username;
-                var score = entry.score;
+                var username = entry.Username;
+                var score = entry.Score;
 
-                leaderboardStringFinal += $"{username}: {score}\n";
+                LeaderboardStringFinal += $"{username}: {score}\n";
             }
         }
 
-        textComponent.SetText(leaderboardStringFinal);
+        textComponent.SetText(LeaderboardStringFinal);
     }
 }

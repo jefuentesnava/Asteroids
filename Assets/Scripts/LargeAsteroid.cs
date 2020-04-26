@@ -3,9 +3,9 @@
 public class LargeAsteroid : MonoBehaviour
 {
     public const float InitialVelocity = 50f;
+    
     public bool IsCollided { get; private set; } = false;
-
-    public GameObject mediumAsteroidPrefab;
+    public GameObject MediumAsteroidPrefab; //leave as public field
 
     private void Start()
     {
@@ -13,24 +13,25 @@ public class LargeAsteroid : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(transform.up * InitialVelocity);
     }
 
-    //asteroid-missle collision behavior
     private void OnTriggerEnter2D(Collider2D c)
     {
         if (c.CompareTag("ShipMissile"))
         {
-            //prevent future calls after initial collision
-            if (IsCollided) return;
+            //prevent future calls
+            if (IsCollided)
+            {
+                return;
+            }
 
             IsCollided = true;
 
-            //instantiate two medium asteroids
             Instantiate(
-                mediumAsteroidPrefab,
+                MediumAsteroidPrefab,
                 transform.position,
                 Random.rotation,
                 transform.parent);
             Instantiate(
-                mediumAsteroidPrefab,
+                MediumAsteroidPrefab,
                 transform.position,
                 Random.rotation,
                 transform.parent);

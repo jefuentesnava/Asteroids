@@ -1,28 +1,26 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GlobalState : MonoBehaviour
 {
-    public const int defaultNumberOfExtraLives = 3;
+    public const int DefaultNumberOfExtraLives = 3;
 
-    public static GlobalState instance;
+    public static GlobalState Instance;
 
-    public bool hasTeleported;
+    public bool HasTeleported { get; set; }
     public int Score { get; set; }
     public int ExtraLifeScore { get; set; }
     public int ExtraLives { get; set; }
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
-            instance = this;
+            Instance = this;
 
-            hasTeleported = false;
-            ExtraLives = defaultNumberOfExtraLives;
+            Reset();
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
@@ -32,7 +30,7 @@ public class GlobalState : MonoBehaviour
     {
         Score = 0;
         ExtraLifeScore = 0;
-        ExtraLives = defaultNumberOfExtraLives;
-        hasTeleported = false;
+        ExtraLives = DefaultNumberOfExtraLives;
+        HasTeleported = false;
     }
 }

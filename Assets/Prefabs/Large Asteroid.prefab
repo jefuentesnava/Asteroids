@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce61b76fd541ec24b9bf8132b3f46e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mediumAsteroidPrefab: {fileID: 284955854297512415, guid: 281f21b8cfbd0924cac34082389425fb,
+  MediumAsteroidPrefab: {fileID: 284955854297512415, guid: 281f21b8cfbd0924cac34082389425fb,
     type: 3}
 --- !u!114 &4975805778136195507
 MonoBehaviour:

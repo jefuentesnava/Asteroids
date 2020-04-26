@@ -2,22 +2,20 @@
 
 public class ShipTurret : MonoBehaviour
 {
-    public Transform firingPoint;
-    public GameObject missilePrefab;
+    public Transform FiringPoint;   //leave as public field
+    public GameObject MissilePrefab;    //leave as public field
 
-    private Ship ship;
+    private Ship Ship;
 
     private void Start()
     {
-        //get access to Ship functions to check if input is enabled or not
         var shipObject = transform.gameObject;
-        ship = shipObject.GetComponent<Ship>();
+        Ship = shipObject.GetComponent<Ship>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
-        if (ship.InputEnabled)
+        if (Ship.InputEnabled)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -28,6 +26,6 @@ public class ShipTurret : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(missilePrefab, firingPoint.position, firingPoint.rotation);
+        Instantiate(MissilePrefab, FiringPoint.position, FiringPoint.rotation);
     }
 }

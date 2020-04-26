@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be11c7187558664abc2c0eb67f7039e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firingPoint: {fileID: 2733663429029935156}
-  missilePrefab: {fileID: 6229772663671384171, guid: 66ce090251df271408a37c9d1e656ef8,
+  FiringPoint: {fileID: 2733663429029935156}
+  MissilePrefab: {fileID: 6229772663671384171, guid: 66ce090251df271408a37c9d1e656ef8,
     type: 3}
 --- !u!114 &4261028453942951589
 MonoBehaviour:

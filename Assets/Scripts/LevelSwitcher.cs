@@ -16,8 +16,10 @@ public class LevelSwitcher : MonoBehaviour
             if (g.transform.CompareTag("PlayerState"))
             {
                 playerStateObject = g;
+                break;
             }
         }
+
         PlayerState = playerStateObject.GetComponent<PlayerState>();
     }
 
@@ -28,7 +30,9 @@ public class LevelSwitcher : MonoBehaviour
 
         foreach (GameObject g in rootGameObjects)
         {
-            if (g.CompareTag("LargeAsteroid") || g.CompareTag("MediumAsteroid") || g.CompareTag("SmallAsteroid"))
+            if (g.CompareTag("LargeAsteroid") ||
+                g.CompareTag("MediumAsteroid") ||
+                g.CompareTag("SmallAsteroid"))
             {
                 asteroidCount++;
             }

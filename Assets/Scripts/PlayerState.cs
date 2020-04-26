@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerState : MonoBehaviour
 {
     public const int ExtraLifeAwardingThreshold = 10000;
 
-    public bool hasTeleported;
+    public bool HasTeleported { get; set; }
     public int Score { get; set; }
     public int ExtraLifeScore { get; set; }
     public int ExtraLives { get; set; }
@@ -13,17 +12,17 @@ public class PlayerState : MonoBehaviour
     private void Start()
     {
         //load state
-        hasTeleported = GlobalState.instance.hasTeleported;
-        Score = GlobalState.instance.Score;
-        ExtraLifeScore = GlobalState.instance.ExtraLifeScore; ;
-        ExtraLives = GlobalState.instance.ExtraLives;
+        HasTeleported = GlobalState.Instance.HasTeleported;
+        Score = GlobalState.Instance.Score;
+        ExtraLifeScore = GlobalState.Instance.ExtraLifeScore; ;
+        ExtraLives = GlobalState.Instance.ExtraLives;
     }
 
     public void Save()
     {
-        GlobalState.instance.hasTeleported = hasTeleported;
-        GlobalState.instance.Score = Score;
-        GlobalState.instance.ExtraLifeScore = ExtraLifeScore;
-        GlobalState.instance.ExtraLives = ExtraLives;
+        GlobalState.Instance.HasTeleported = HasTeleported;
+        GlobalState.Instance.Score = Score;
+        GlobalState.Instance.ExtraLifeScore = ExtraLifeScore;
+        GlobalState.Instance.ExtraLives = ExtraLives;
     }
 }

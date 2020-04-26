@@ -5,15 +5,14 @@ public class SaucerMissile : MonoBehaviour
     public const float Timeout = 2.5f;
     public const float MissileSpeed = 5f;
     public float Timer { get; private set; } = 0.0f;
-    public Rigidbody2D RigidBody;
+    public Rigidbody2D RigidBody;   //leave as public field
 
-    void Start()
+    private void Start()
     {
-
         RigidBody.velocity = transform.up * MissileSpeed;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Timer += Time.fixedDeltaTime;
 
@@ -23,7 +22,6 @@ public class SaucerMissile : MonoBehaviour
         }
     }
 
-    //missile-ship collision behavior; called when saucer missile collides with ship
     private void OnTriggerEnter2D(Collider2D c)
     {
         if (c.gameObject.CompareTag("Ship"))

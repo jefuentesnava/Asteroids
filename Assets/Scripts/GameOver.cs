@@ -11,7 +11,7 @@ public class GameOver : MonoBehaviour
 
         if (username != "")
         {
-            var score = GlobalState.instance.Score.ToString();
+            var score = GlobalState.Instance.Score.ToString();
             var leaderboardString = PlayerPrefs.GetString("leaderboard");
             string entry;
 

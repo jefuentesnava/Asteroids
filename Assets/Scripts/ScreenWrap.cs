@@ -18,7 +18,10 @@ public class ScreenWrap : MonoBehaviour
 
         foreach (Renderer r in renderers)
         {
-            if (r.isVisible) return true;
+            if (r.isVisible)
+            {
+                return true;
+            }
         }
 
         return false;

@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     public void StartSinglePlayerMode()
     {
-        GlobalState.instance.Reset();
+        GlobalState.Instance.Reset();
         SceneManager.LoadScene("Level01", LoadSceneMode.Single);
     }
 }

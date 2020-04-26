@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535fd6846a4d0cb4493b59cb4c168abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallAsteroidPrefab: {fileID: 5014609234981081138, guid: 33b374c0cc9e0b94ba9240ffafeff70c,
+  SmallAsteroidPrefab: {fileID: 5014609234981081138, guid: 33b374c0cc9e0b94ba9240ffafeff70c,
     type: 3}
 --- !u!114 &6724082506071099327
 MonoBehaviour:

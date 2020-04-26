@@ -12,8 +12,9 @@ public class ShipMissile : MonoBehaviour
     public const int SmallSaucerPointValue = 1000;
 
     public float Timer { get; private set; } = 0.0f;
-    public Rigidbody2D RigidBody;
-    private PlayerState playerState;
+    public Rigidbody2D RigidBody;   //leave as public field
+    
+    private PlayerState PlayerState;
 
     private void Start()
     {
@@ -28,9 +29,11 @@ public class ShipMissile : MonoBehaviour
             if (g.transform.CompareTag("PlayerState"))
             {
                 playerStateObject = g;
+                break;
             }
         }
-        playerState = playerStateObject.GetComponent<PlayerState>();
+
+        PlayerState = playerStateObject.GetComponent<PlayerState>();
     }
 
     private void FixedUpdate()
@@ -43,44 +46,43 @@ public class ShipMissile : MonoBehaviour
         }
     }
 
-    //missile-asteroid collision behavior; called when missile collides with asteroid
     private void OnTriggerEnter2D(Collider2D c)
     {
         if (c.gameObject.CompareTag("LargeAsteroid"))
         {
-            playerState.Score += LargeAsteroidPointValue;
-            playerState.ExtraLifeScore += LargeAsteroidPointValue;
+            PlayerState.Score += LargeAsteroidPointValue;
+            PlayerState.ExtraLifeScore += LargeAsteroidPointValue;
             Destroy(gameObject);
         }
 
         if (c.gameObject.CompareTag("MediumAsteroid"))
         {
-            playerState.Score += MediumAsteroidPointValue;
-            playerState.ExtraLifeScore += MediumAsteroidPointValue;
+            PlayerState.Score += MediumAsteroidPointValue;
+            PlayerState.ExtraLifeScore += MediumAsteroidPointValue;
             Destroy(gameObject);
         }
 
         if (c.gameObject.CompareTag("SmallAsteroid"))
         {
-            playerState.Score += SmallAsteroidPointValue;
-            playerState.ExtraLifeScore += SmallAsteroidPointValue;
+            PlayerState.Score += SmallAsteroidPointValue;
+            PlayerState.ExtraLifeScore += SmallAsteroidPointValue;
             Destroy(gameObject);
         }
 
         if (c.gameObject.CompareTag("LargeSaucer"))
         {
-            playerState.Score += LargeSaucerPointValue;
-            playerState.ExtraLifeScore += LargeSaucerPointValue;
+            PlayerState.Score += LargeSaucerPointValue;
+            PlayerState.ExtraLifeScore += LargeSaucerPointValue;
             Destroy(gameObject);
         }
 
         if (c.gameObject.CompareTag("SmallSaucer"))
         {
-            playerState.Score += SmallSaucerPointValue;
-            playerState.ExtraLifeScore += SmallSaucerPointValue;
+            PlayerState.Score += SmallSaucerPointValue;
+            PlayerState.ExtraLifeScore += SmallSaucerPointValue;
             Destroy(gameObject);
         }
 
-        playerState.Save();
+        PlayerState.Save();
     }
 }
