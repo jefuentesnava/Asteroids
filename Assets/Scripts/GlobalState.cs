@@ -33,5 +33,6 @@ public class GlobalState : MonoBehaviour
         Score = 0;
         ExtraLifeScore = 0;
         ExtraLives = defaultNumberOfExtraLives;
+        hasTeleported = false;
     }
 }
