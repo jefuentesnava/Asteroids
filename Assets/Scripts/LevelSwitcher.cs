@@ -3,24 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelSwitcher : MonoBehaviour
 {
-    private PlayerState playerState;
-
-    private void Start()
-    {
-        //get access to player state
-        GameObject playerStateObject = null;
-        GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-
-        foreach (GameObject g in rootGameObjects)
-        {
-            if (g.transform.CompareTag("PlayerState"))
-            {
-                playerStateObject = g;
-            }
-        }
-
-        playerState = playerStateObject.GetComponent<PlayerState>();
-    }
+    public GameObject PlayerState;  //set in editor using each level's PlayerState
 
     private void FixedUpdate()
     {
@@ -37,7 +20,7 @@ public class LevelSwitcher : MonoBehaviour
 
         if (asteroidCount == 0)
         {
-            playerState.Save();
+            PlayerState.gameObject.GetComponent<PlayerState>().Save();
 
             var sceneName = SceneManager.GetActiveScene().name;
 
