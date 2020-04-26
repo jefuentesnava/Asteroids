@@ -9,6 +9,7 @@ public class ShipMissile : MonoBehaviour
     public const int MediumAsteroidPointValue = 50;
     public const int SmallAsteroidPointValue = 100;
     public const int LargeSaucerPointValue = 200;
+    public const int SmallSaucerPointValue = 1000;
 
     public float Timer { get; private set; } = 0.0f;
     public Rigidbody2D RigidBody;
@@ -70,6 +71,13 @@ public class ShipMissile : MonoBehaviour
         {
             playerState.Score += LargeSaucerPointValue;
             playerState.ExtraLifeScore += LargeSaucerPointValue;
+            Destroy(gameObject);
+        }
+
+        if (c.gameObject.CompareTag("SmallSaucer"))
+        {
+            playerState.Score += SmallSaucerPointValue;
+            playerState.ExtraLifeScore += SmallSaucerPointValue;
             Destroy(gameObject);
         }
 

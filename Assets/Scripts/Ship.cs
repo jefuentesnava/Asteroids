@@ -63,12 +63,14 @@ public class Ship : MonoBehaviour
         }
     }
 
-    //ship-asteroid collision behavior; called when ship collides with asteroid
+    //ship-collision behavior
     private void OnTriggerEnter2D(Collider2D c)
     {
         if (c.gameObject.CompareTag("LargeAsteroid") ||
             c.gameObject.CompareTag("MediumAsteroid") ||
             c.gameObject.CompareTag("SmallAsteroid") ||
+            c.gameObject.CompareTag("LargeSaucer") ||
+            c.gameObject.CompareTag("SmallSaucer") ||
             c.gameObject.CompareTag("SaucerMissile"))
         {
             if (playerState.ExtraLives > 0)

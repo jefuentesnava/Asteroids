@@ -3,7 +3,23 @@ using UnityEngine.SceneManagement;
 
 public class LevelSwitcher : MonoBehaviour
 {
-    public PlayerState PlayerState;
+    private PlayerState PlayerState;
+
+    private void Start()
+    {
+        //get access to player state
+        GameObject playerStateObject = null;
+        GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+
+        foreach (GameObject g in rootGameObjects)
+        {
+            if (g.transform.CompareTag("PlayerState"))
+            {
+                playerStateObject = g;
+            }
+        }
+        PlayerState = playerStateObject.GetComponent<PlayerState>();
+    }
 
     private void FixedUpdate()
     {

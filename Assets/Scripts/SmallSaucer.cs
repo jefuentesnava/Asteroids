@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class LargeSaucer : MonoBehaviour
+public class SmallSaucer : MonoBehaviour
 {
-    public const float Velocity = 100f;
+    public const float Velocity = 150f;
     void Start()
     {
         Camera camera = Camera.main;
@@ -20,8 +20,8 @@ public class LargeSaucer : MonoBehaviour
     {
         GetComponent<ScreenWrap>().enabled = false;
         gameObject.GetComponent<PolygonCollider2D>().enabled = false;
-        yield return new WaitForSeconds(Random.Range(5.0f, 10.0f));
-        GetComponent<Rigidbody2D>().AddForce(transform.right * Velocity);
+        yield return new WaitForSeconds(Random.Range(15.0f, 20.0f));
+        GetComponent<Rigidbody2D>().AddForce(-transform.right * Velocity);
         gameObject.GetComponent<PolygonCollider2D>().enabled = true;
         yield return new WaitForSeconds(5.0f);
         GetComponent<ScreenWrap>().enabled = true;

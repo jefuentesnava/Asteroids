@@ -13,6 +13,7 @@ TagManager:
   - LargeSaucer
   - ShipMissile
   - SaucerMissile
+  - SmallSaucer
   layers:
   - Default
   - TransparentFX

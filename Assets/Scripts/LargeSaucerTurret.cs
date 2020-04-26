@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SaucerTurret : MonoBehaviour
+public class LargeSaucerTurret : MonoBehaviour
 {
     public Transform FiringPoint;
     public Transform Ship;
