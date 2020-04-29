@@ -47,6 +47,7 @@ public class Ship : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             GetComponent<Rigidbody2D>().AddForce(transform.up * ThrusterSpeed);
+           
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -108,6 +109,7 @@ public class Ship : MonoBehaviour
             c.gameObject.CompareTag("SmallSaucer") ||
             c.gameObject.CompareTag("SaucerMissile"))
         {
+            FindObjectOfType<AudioManager>().Play("ShipDeath");
             if (PlayerState.ExtraLives > 0)
             {
                 StartCoroutine(Respawn());

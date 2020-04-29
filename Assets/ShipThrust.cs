@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class thrustSound : MonoBehaviour
+public class ShipThrust : MonoBehaviour
 {
+
     public AudioSource sound_Thrust;
 
     //Plays audio file when ship accelerates forward

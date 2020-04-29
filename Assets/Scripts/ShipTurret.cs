@@ -19,6 +19,7 @@ public class ShipTurret : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                FindObjectOfType<AudioManager>().Play("ShipBullet");
                 Shoot();
             }
         }

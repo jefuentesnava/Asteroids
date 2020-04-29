@@ -23,6 +23,7 @@ public class SmallAsteroid : MonoBehaviour
             }
 
             IsCollided = true;
+            FindObjectOfType<AudioManager>().Play("AsteroidDeath");
             Destroy(gameObject);
         }
     }
