@@ -44,12 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: AsteroidDeath
+  - name: Death
     clip: {fileID: 8300000, guid: 46f36d193c9fcf44cb0ec3029a568043, type: 3}
     source: {fileID: 0}
   - name: ShipBullet
     clip: {fileID: 8300000, guid: 0429782415884e24ca341c3ccb83f4b5, type: 3}
-    source: {fileID: 0}
-  - name: ShipDeath
-    clip: {fileID: 8300000, guid: 46f36d193c9fcf44cb0ec3029a568043, type: 3}
     source: {fileID: 0}

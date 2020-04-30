@@ -109,7 +109,7 @@ public class Ship : MonoBehaviour
             c.gameObject.CompareTag("SmallSaucer") ||
             c.gameObject.CompareTag("SaucerMissile"))
         {
-            FindObjectOfType<AudioManager>().Play("ShipDeath");
+            FindObjectOfType<AudioManager>().Play("Death");
             if (PlayerState.ExtraLives > 0)
             {
                 StartCoroutine(Respawn());

@@ -39,6 +39,7 @@ public class SmallSaucer : MonoBehaviour
     {
         if (c.CompareTag("ShipMissile"))
         {
+            FindObjectOfType<AudioManager>().Play("Death");
             Destroy(gameObject);
         }
     }

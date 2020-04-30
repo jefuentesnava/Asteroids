@@ -35,7 +35,7 @@ public class LargeAsteroid : MonoBehaviour
                 transform.position,
                 Random.rotation,
                 transform.parent);
-            FindObjectOfType<AudioManager>().Play("AsteroidDeath");
+            FindObjectOfType<AudioManager>().Play("Death");
             Destroy(gameObject);
 
         }
