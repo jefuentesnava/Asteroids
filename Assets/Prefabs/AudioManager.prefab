@@ -46,13 +46,10 @@ MonoBehaviour:
   sounds:
   - name: AsteroidDeath
     clip: {fileID: 8300000, guid: 46f36d193c9fcf44cb0ec3029a568043, type: 3}
-    loop: 0
     source: {fileID: 0}
   - name: ShipBullet
     clip: {fileID: 8300000, guid: 0429782415884e24ca341c3ccb83f4b5, type: 3}
-    loop: 0
     source: {fileID: 0}
   - name: ShipDeath
     clip: {fileID: 8300000, guid: 46f36d193c9fcf44cb0ec3029a568043, type: 3}
-    loop: 0
     source: {fileID: 0}

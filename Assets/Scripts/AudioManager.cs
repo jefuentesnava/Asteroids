@@ -20,9 +20,9 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        if(s == null)
+        if(name == null)
         {
-            return;         //exception if string name is not found
+            return;
         }
         s.source.Play();
     }

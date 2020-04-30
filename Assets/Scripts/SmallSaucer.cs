@@ -19,6 +19,7 @@ public class SmallSaucer : MonoBehaviour
         GetComponent<Rigidbody2D>().position = randomPosition;
 
         StartCoroutine(Spawn());
+        FindObjectOfType<AudioManager>().Play("SaucerSpawn");
     }
 
     private IEnumerator Spawn()
