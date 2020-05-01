@@ -1,11 +1,13 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using System.Threading;
+using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-  
+    
     //Array to hold a parameters about gmaeObject sounds
     void Awake()
     {
@@ -13,6 +15,8 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
         }
     }
 
@@ -20,10 +24,6 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        if(name == null)
-        {
-            return;
-        }
         s.source.Play();
     }
 }

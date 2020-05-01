@@ -46,10 +46,19 @@ MonoBehaviour:
   sounds:
   - name: Death
     clip: {fileID: 8300000, guid: 46f36d193c9fcf44cb0ec3029a568043, type: 3}
+    loop: 0
+    volume: 0.8
+    pitch: 1
     source: {fileID: 0}
   - name: ShipBullet
     clip: {fileID: 8300000, guid: 0429782415884e24ca341c3ccb83f4b5, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
   - name: ExtraLife
     clip: {fileID: 8300000, guid: 217dcc37f2f2fdc42b3937cf9d50992f, type: 3}
+    loop: 0
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
