@@ -74,6 +74,7 @@ public class Ship : MonoBehaviour
     {
         if (PlayerState.ExtraLifeScore > PlayerState.ExtraLifeAwardingThreshold)
         {
+            FindObjectOfType<AudioManager>().Play("ExtraLife");
             PlayerState.ExtraLives++;
             PlayerState.ExtraLifeScore -= PlayerState.ExtraLifeAwardingThreshold;
             PlayerState.Save();
