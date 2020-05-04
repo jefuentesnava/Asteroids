@@ -7,8 +7,9 @@ using UnityEngine.UIElements;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    
+
     //Array to hold a parameters about gmaeObject sounds
+    //Comment to allow to commit to Master
     void Awake()
     {
         foreach (Sound s in sounds)
